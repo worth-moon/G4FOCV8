@@ -18,11 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "key_app.h"
+#include "key.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,7 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+ButtonState button = WAITING;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,28 +87,37 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-
+	HAL_TIM_Base_Start_IT(&htim3);
+	
+	
+  Key_Init();
+  Add_Key_demo();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      //HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin,1);
-      //HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 1);
-      HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 1);
-      HAL_GPIO_WritePin(RGB_GPIO_Port, RGB_Pin, 1);
-      HAL_Delay(1000);
+//      LED1_ON();
+//      LED2_ON();
+//      LED3_ON();
+//      RGB_ON();
+//      HAL_Delay(1000);
 
-      HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
-      HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 0);
-      HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 0);
-      HAL_GPIO_WritePin(RGB_GPIO_Port, RGB_Pin, 0);
-      HAL_Delay(1000);
+//      LED1_OFF();
+//      LED2_OFF();
+//      LED3_OFF();
+//      RGB_OFF();
+//      HAL_Delay(1000);
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+      handleButtonState();
+      task_run_key();
   }
   /* USER CODE END 3 */
 }
@@ -157,6 +168,32 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+{
+    //if (htim == &htim11)//f = 100 t = 10ms 
+    //{
+
+    //}
+    //else if (htim == &htim12)//f = 10k t = 100us
+    //{
+
+    //}
+    //else if (htim == &htim13)//f = 5k t = 200us
+    //{
+
+    //}
+    //else if (htim == &htim14)//f = 1k t = 1ms 
+    //{
+    //    //按键检测提供1ms心跳
+    //    
+    //}
+
+    if (htim == &htim3)
+    {
+        task_listen_key();
+    }
+}
+
 
 /* USER CODE END 4 */
 
