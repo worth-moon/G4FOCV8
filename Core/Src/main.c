@@ -19,12 +19,19 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "key_app.h"
 #include "key.h"
+
+#include "debug_printf.h"
+#include "vofa.h"
+
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,6 +53,17 @@
 
 /* USER CODE BEGIN PV */
 ButtonState button = WAITING;
+const char* buttonStateStrings[] = {
+    "WAITING",              // 等待（空闲状态）
+    "BUTTON1_SHORT_PRESS",  // 按键1短按
+    "BUTTON1_LONG_PRESS",   // 按键1长按
+    "BUTTON2_SHORT_PRESS",  // 按键2短按
+    "BUTTON2_LONG_PRESS",   // 按键2长按
+    "BUTTON3_SHORT_PRESS",  // 按键3短按
+    "BUTTON3_LONG_PRESS",   // 按键3长按
+    "BUTTON4_SHORT_PRESS",  // 按键4短按
+    "BUTTON4_LONG_PRESS"    // 按键4长按
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -88,18 +106,33 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM3_Init();
+  MX_USART3_UART_Init();
+  MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim3);
 	
 	
   Key_Init();
   Add_Key_demo();
+	
+  my_printf("setup done\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+//			uint8_t tx_buffer[100] = "#A;";
+//	CDC_Transmit_FS(tx_buffer, strlen(tx_buffer));
+		
+//      static unsigned int a;
+//      uint8_t tx_buffer[100] = "#this code is %d;";
+//			a++;
+//		if(a>60000)
+//			a = 0;
+//			my_printf(tx_buffer,a);
+		
+			//vofa_demo();
 //      LED1_ON();
 //      LED2_ON();
 //      LED3_ON();
@@ -133,17 +166,18 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1_BOOST);
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV2;
-  RCC_OscInitStruct.PLL.PLLN = 85;
+  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV1;
+  RCC_OscInitStruct.PLL.PLLN = 12;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
@@ -161,7 +195,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -206,6 +240,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
+  my_printf("Error_Handler\r\n");
   while (1)
   {
   }

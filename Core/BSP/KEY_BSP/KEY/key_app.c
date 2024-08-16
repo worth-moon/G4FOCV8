@@ -65,6 +65,7 @@ unsigned char GetKeyValue(Key_Num num)
 void keyLP_key1()
 {
 	button = BUTTON1_LONG_PRESS;
+	
 }
 void KeySP_key1()
 {
@@ -130,6 +131,7 @@ void Add_Key_demo()
 	
 	if(status != ERROR_OK)
 	{
+		my_printf("Add Key Error\r\n");
 		//OLED_ShowString(0,2,(uint8_t *)"ADD_KEY_ERROR",16);
 	}	
 	
@@ -142,6 +144,7 @@ void Add_Key_demo()
 	
 	if(status != ERROR_OK)
 	{
+		my_printf("Add Key Error\r\n");
 		//OLED_ShowString(0,2,(uint8_t *)"ADD_KEY_ERROR",16);
 	}
 	
@@ -164,6 +167,7 @@ void Add_Key_demo()
 	
 	if(status != ERROR_OK)
 	{
+		my_printf("Add Key Error\r\n");
 		//OLED_ShowString(0,2,(uint8_t *)"ADD_KEY_ERROR",16);
 	}	
 	
@@ -177,6 +181,7 @@ void Add_Key_demo()
 
 	if (status != ERROR_OK)
 	{
+		my_printf("Add Key Error\r\n");
 		//OLED_ShowString(0, 2, (uint8_t*)"ADD_KEY_ERROR", 16);
 	}
 }
@@ -220,52 +225,60 @@ void Add_KeyGP_demo()
 
 void handleButtonState(void) 
 {
+	static ButtonState last_button = WAITING;
+	if (button != last_button)
+	{
+		my_printf("Button state changed to %s\r\n", buttonStateStrings[button]);
+		last_button = button;
+	}
+		
+
 	switch (button)
 	{
-	case BUTTON1_SHORT_PRESS:
-		HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-		// 处理按键1短按的操作
-		button = WAITING;
-		break;
-	case BUTTON1_LONG_PRESS:
-		HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-		// 处理按键1长按的操作
-		button = WAITING;
-		break;
-	case BUTTON2_SHORT_PRESS:
-		HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
-		// 处理按键2短按的操作
-		button = WAITING;
-		break;
-	case BUTTON2_LONG_PRESS:
-		// 处理按键2长按的操作
-		button = WAITING;
-		break;
-	case BUTTON3_SHORT_PRESS:
-		HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
-		// 处理按键3短按的操作
-		button = WAITING;
-		break;
-	case BUTTON3_LONG_PRESS:
-		// 处理按键3长按的操作
-		button = WAITING;
-		break;
-	case BUTTON4_SHORT_PRESS:
-		HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-		// 处理按键4短按的操作
-		button = WAITING;
-		break;
-	case BUTTON4_LONG_PRESS:
-		// 处理按键4长按的操作
-		button = WAITING;
-		break;
-	case WAITING:
-		// 处理等待状态的操作
-		button = WAITING;
-		break;
-	default:
-		button = WAITING;
-		break;
+		case BUTTON1_SHORT_PRESS:
+			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+			// 处理按键1短按的操作
+			button = WAITING;
+			break;
+		case BUTTON1_LONG_PRESS:
+			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+			// 处理按键1长按的操作
+			button = WAITING;
+			break;
+		case BUTTON2_SHORT_PRESS:
+			HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+			// 处理按键2短按的操作
+			button = WAITING;
+			break;
+		case BUTTON2_LONG_PRESS:
+			// 处理按键2长按的操作
+			button = WAITING;
+			break;
+		case BUTTON3_SHORT_PRESS:
+			HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+			// 处理按键3短按的操作
+			button = WAITING;
+			break;
+		case BUTTON3_LONG_PRESS:
+			// 处理按键3长按的操作
+			button = WAITING;
+			break;
+		case BUTTON4_SHORT_PRESS:
+			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+			// 处理按键4短按的操作
+			button = WAITING;
+			break;
+		case BUTTON4_LONG_PRESS:
+			// 处理按键4长按的操作
+			button = WAITING;
+			break;
+		case WAITING:
+			// 处理等待状态的操作
+			button = WAITING;
+			break;
+		default:
+			button = WAITING;
+			break;
 	}
 }
 

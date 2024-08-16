@@ -31,7 +31,18 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "key_app.h"
+#include "key.h"
 
+#include "debug_printf.h"
+#include "vofa.h"
+
+#include "string.h"
+
+#include "tim.h"
+#include "usart.h"
+#include "usb_device.h"
+#include "gpio.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -58,6 +69,7 @@ typedef enum {
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 extern ButtonState button;
+extern const char* buttonStateStrings[];
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
