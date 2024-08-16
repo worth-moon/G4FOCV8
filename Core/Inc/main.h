@@ -86,8 +86,16 @@ void Error_Handler(void);
 #define LED2_GPIO_Port GPIOC
 #define LED3_Pin GPIO_PIN_15
 #define LED3_GPIO_Port GPIOC
+#define APH4_Pin GPIO_PIN_3
+#define APH4_GPIO_Port GPIOC
 #define RGB_Pin GPIO_PIN_5
 #define RGB_GPIO_Port GPIOA
+#define LIN1_Pin GPIO_PIN_13
+#define LIN1_GPIO_Port GPIOB
+#define LIN2_Pin GPIO_PIN_14
+#define LIN2_GPIO_Port GPIOB
+#define LIN3_Pin GPIO_PIN_15
+#define LIN3_GPIO_Port GPIOB
 #define KEY4_Pin GPIO_PIN_6
 #define KEY4_GPIO_Port GPIOC
 #define KEY3_Pin GPIO_PIN_7
@@ -96,6 +104,12 @@ void Error_Handler(void);
 #define KEY2_GPIO_Port GPIOC
 #define KEY1_Pin GPIO_PIN_9
 #define KEY1_GPIO_Port GPIOC
+#define HIN1_Pin GPIO_PIN_8
+#define HIN1_GPIO_Port GPIOA
+#define HIN2_Pin GPIO_PIN_9
+#define HIN2_GPIO_Port GPIOA
+#define HIN3_Pin GPIO_PIN_10
+#define HIN3_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 #define LED1_ON() HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1)

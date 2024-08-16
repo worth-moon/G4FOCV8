@@ -32,6 +32,7 @@
 #include "vofa.h"
 
 #include "string.h"
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,12 +65,14 @@ const char* buttonStateStrings[] = {
     "BUTTON4_SHORT_PRESS",  // 按键4短按
     "BUTTON4_LONG_PRESS"    // 按键4长按
 };
+
+float foc_angle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void svpwm(int angle, float m);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -104,10 +107,13 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  //MX_USB_Device_Init();
   MX_GPIO_Init();
   MX_TIM3_Init();
   MX_USART3_UART_Init();
   MX_USB_Device_Init();
+  MX_TIM1_Init();
+	//MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim3);
 	
@@ -115,6 +121,15 @@ int main(void)
   Key_Init();
   Add_Key_demo();
 	
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+  //
+  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+
   my_printf("setup done\r\n");
   /* USER CODE END 2 */
 
@@ -122,30 +137,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//			uint8_t tx_buffer[100] = "#A;";
-//	CDC_Transmit_FS(tx_buffer, strlen(tx_buffer));
-		
-//      static unsigned int a;
-//      uint8_t tx_buffer[100] = "#this code is %d;";
-//			a++;
-//		if(a>60000)
-//			a = 0;
-//			my_printf(tx_buffer,a);
-		
-			//vofa_demo();
-//      LED1_ON();
-//      LED2_ON();
-//      LED3_ON();
-//      RGB_ON();
-//      HAL_Delay(1000);
+      foc_angle += 1;
+      if (foc_angle > 360)
+          foc_angle = 0;
 
-//      LED1_OFF();
-//      LED2_OFF();
-//      LED3_OFF();
-//      RGB_OFF();
-//      HAL_Delay(1000);
-
-
+      svpwm((int)foc_angle, 0.5);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -202,6 +198,84 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void svpwm(int angle, float m)
+{
+    uint16_t t4, t6, t0;
+    uint8_t section;							//扇区
+    uint16_t Ts = __HAL_TIM_GET_AUTORELOAD(&htim1);	//计时器周期
+    float ch1, ch2, ch3;						//通道1、2、3的装载值
+    section = angle / 60 + 1;					//得到角度对应的扇区
+    angle %= 60;								//因为前面的算法只计算了0到60度
+
+    /*得到矢量的作用时间，除以57.2958是把角度换算成弧度*/
+    t4 = sinf((60 - angle) / 57.2958f) * Ts * m;
+    t6 = sinf(angle / 57.2958f) * Ts * m;
+    t0 = (Ts - t4 - t6) / 2;
+
+    /*判断扇区，用7段式svpwm调制，得到三个通道的装载值*/
+    switch (section)
+    {
+    case 1:
+    {
+        ch1 = t4 + t6 + t0;
+        ch2 = t6 + t0;
+        ch3 = t0;
+    }break;
+
+    case 2:
+    {
+        ch1 = t4 + t0;
+        ch2 = t4 + t6 + t0;
+        ch3 = t0;
+    }break;
+
+    case 3:
+    {
+        ch1 = t0;
+        ch2 = t4 + t6 + t0;
+        ch3 = t6 + t0;
+    }break;
+
+    case 4:
+    {
+        ch1 = t0;
+        ch2 = t4 + t0;
+        ch3 = t4 + t6 + t0;
+    }break;
+
+    case 5:
+    {
+        ch1 = t6 + t0;
+        ch2 = t0;
+        ch3 = t4 + t6 + t0;
+    }break;
+
+    case 6:
+    {
+        ch1 = t4 + t6 + t0;
+        ch2 = t0;
+        ch3 = t4 + t0;
+    }break;
+
+    default:
+        break;
+    }
+
+    
+    /*如果有需要可以让硬件输出波形*/
+//    TIM1->CCR1 = ch1;
+//    TIM1->CCR2 = ch2;
+//    TIM1->CCR3 = ch3;
+
+    vofa_send_data(1, ch1);
+    vofa_send_data(2, ch2);
+    vofa_send_data(3, ch3);
+    vofa_send_data(4, foc_angle);
+    vofa_sendframetail();
+    //SendWave(ch1, ch2, ch3);					//使用串口示波器显示波形
+}
+
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     //if (htim == &htim11)//f = 100 t = 10ms 
