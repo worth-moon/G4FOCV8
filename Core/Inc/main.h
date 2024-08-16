@@ -70,6 +70,7 @@ typedef enum {
 /* USER CODE BEGIN EM */
 extern ButtonState button;
 extern const char* buttonStateStrings[];
+extern float ch1, ch2, ch3;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

@@ -107,13 +107,11 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  //MX_USB_Device_Init();
   MX_GPIO_Init();
   MX_TIM3_Init();
   MX_USART3_UART_Init();
   MX_USB_Device_Init();
   MX_TIM1_Init();
-	//MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim3);
 	
@@ -137,11 +135,21 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      foc_angle += 1;
-      if (foc_angle > 360)
-          foc_angle = 0;
-
-      svpwm((int)foc_angle, 0.5);
+      static int tick;
+      tick++;
+      if (tick == 200)
+      {
+          vofa_demo();
+          tick = 0;
+          //my_printf("tick %d\r\n", tick);
+      }
+      
+			//HAL_Delay(1);
+      //foc_angle += 1;
+      //if (foc_angle > 360)
+      //    foc_angle = 0;
+      //svpwm((int)foc_angle, 0.5);
+			//HAL_Delay(1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -162,7 +170,7 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
+  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1_BOOST);
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -172,8 +180,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV1;
-  RCC_OscInitStruct.PLL.PLLN = 12;
+  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV2;
+  RCC_OscInitStruct.PLL.PLLN = 85;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
@@ -191,19 +199,20 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
 /* USER CODE BEGIN 4 */
+float ch1, ch2, ch3;						//通道1、2、3的装载值
 void svpwm(int angle, float m)
 {
     uint16_t t4, t6, t0;
     uint8_t section;							//扇区
     uint16_t Ts = __HAL_TIM_GET_AUTORELOAD(&htim1);	//计时器周期
-    float ch1, ch2, ch3;						//通道1、2、3的装载值
+    
     section = angle / 60 + 1;					//得到角度对应的扇区
     angle %= 60;								//因为前面的算法只计算了0到60度
 
@@ -267,6 +276,7 @@ void svpwm(int angle, float m)
 //    TIM1->CCR2 = ch2;
 //    TIM1->CCR3 = ch3;
 
+    vofa_send_data(0, ch1);
     vofa_send_data(1, ch1);
     vofa_send_data(2, ch2);
     vofa_send_data(3, ch3);
