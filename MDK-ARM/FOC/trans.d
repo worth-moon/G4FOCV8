@@ -1,4 +1,5 @@
-foc/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
+foc/trans.o: ..\Core\BSP\FOC\Coordinate_transformation\trans.c \
+  ..\Core\BSP\FOC\Coordinate_transformation\trans.h ..\Core\Inc\main.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
   ..\Core\Inc\stm32g4xx_hal_conf.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h \
@@ -36,5 +37,4 @@ foc/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Core\Inc\usart.h ..\Core\BSP\UART_USB\vofa.h ..\Core\Inc\tim.h \
-  ..\USB_Device\App\usb_device.h ..\Core\Inc\gpio.h \
-  ..\Core\BSP\FOC\Coordinate_transformation\trans.h
+  ..\USB_Device\App\usb_device.h ..\Core\Inc\gpio.h

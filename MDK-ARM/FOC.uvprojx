@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G474xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include;../Core/BSP/KEY_BSP/KEY;../Core/BSP/KEY_BSP/Ringbuff;../USB_Device/App;../USB_Device/Target;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Core/BSP/UART_USB</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include;../Core/BSP/KEY_BSP/KEY;../Core/BSP/KEY_BSP/Ringbuff;../USB_Device/App;../USB_Device/Target;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Core/BSP/UART_USB;..\Core\BSP\FOC\Coordinate_transformation</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1626,6 +1626,21 @@
               <FileName>vofa.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Core\BSP\UART_USB\vofa.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BSP/FOC</GroupName>
+          <Files>
+            <File>
+              <FileName>trans.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\BSP\FOC\Coordinate_transformation\trans.c</FilePath>
+            </File>
+            <File>
+              <FileName>trans.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\BSP\FOC\Coordinate_transformation\trans.h</FilePath>
             </File>
           </Files>
         </Group>

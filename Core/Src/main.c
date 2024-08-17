@@ -33,6 +33,8 @@
 
 #include "string.h"
 #include "math.h"
+
+#include "trans.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,6 +69,10 @@ const char* buttonStateStrings[] = {
 };
 
 float foc_angle;
+
+extern float theta_angle;
+extern float Vq;
+extern float Tcmp1, Tcmp2, Tcmp3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -137,9 +143,14 @@ int main(void)
   {
       static int tick;
       tick++;
-      if (tick == 200)
+      if (tick == 10)
       {
-          vofa_demo();
+          foc_angle += 0.1;
+        if (foc_angle > 360)
+            foc_angle = 0;
+        svpwm((int)foc_angle, 0.5);
+ 
+          //vofa_demo();
           tick = 0;
           //my_printf("tick %d\r\n", tick);
       }
@@ -209,80 +220,24 @@ void SystemClock_Config(void)
 float ch1, ch2, ch3;						//通道1、2、3的装载值
 void svpwm(int angle, float m)
 {
-    uint16_t t4, t6, t0;
-    uint8_t section;							//扇区
-    uint16_t Ts = __HAL_TIM_GET_AUTORELOAD(&htim1);	//计时器周期
-    
-    section = angle / 60 + 1;					//得到角度对应的扇区
-    angle %= 60;								//因为前面的算法只计算了0到60度
+	theta_angle = angle;
+	Vq = m;
+	
+    tran_angle(theta_angle);
+    sin_cos_val();
+    anti_park_transf();
+    svpwm_calc();
 
-    /*得到矢量的作用时间，除以57.2958是把角度换算成弧度*/
-    t4 = sinf((60 - angle) / 57.2958f) * Ts * m;
-    t6 = sinf(angle / 57.2958f) * Ts * m;
-    t0 = (Ts - t4 - t6) / 2;
-
-    /*判断扇区，用7段式svpwm调制，得到三个通道的装载值*/
-    switch (section)
-    {
-    case 1:
-    {
-        ch1 = t4 + t6 + t0;
-        ch2 = t6 + t0;
-        ch3 = t0;
-    }break;
-
-    case 2:
-    {
-        ch1 = t4 + t0;
-        ch2 = t4 + t6 + t0;
-        ch3 = t0;
-    }break;
-
-    case 3:
-    {
-        ch1 = t0;
-        ch2 = t4 + t6 + t0;
-        ch3 = t6 + t0;
-    }break;
-
-    case 4:
-    {
-        ch1 = t0;
-        ch2 = t4 + t0;
-        ch3 = t4 + t6 + t0;
-    }break;
-
-    case 5:
-    {
-        ch1 = t6 + t0;
-        ch2 = t0;
-        ch3 = t4 + t6 + t0;
-    }break;
-
-    case 6:
-    {
-        ch1 = t4 + t6 + t0;
-        ch2 = t0;
-        ch3 = t4 + t0;
-    }break;
-
-    default:
-        break;
-    }
-
-    
-    /*如果有需要可以让硬件输出波形*/
-//    TIM1->CCR1 = ch1;
-//    TIM1->CCR2 = ch2;
-//    TIM1->CCR3 = ch3;
-
-    vofa_send_data(0, ch1);
-    vofa_send_data(1, ch1);
-    vofa_send_data(2, ch2);
-    vofa_send_data(3, ch3);
-    vofa_send_data(4, foc_angle);
+    vofa_send_data(0, Tcmp1);
+    vofa_send_data(1, Tcmp2);
+    vofa_send_data(2, Tcmp3);
+    vofa_send_data(3, theta_angle);
+    //vofa_send_data(4, theta_angle);
     vofa_sendframetail();
-    //SendWave(ch1, ch2, ch3);					//使用串口示波器显示波形
+    
+    TIM1->CCR1 = (uint16_t)(Tcmp1);
+    TIM1->CCR2 = (uint16_t)(Tcmp2);
+    TIM1->CCR3 = (uint16_t)(Tcmp3);
 }
 
 

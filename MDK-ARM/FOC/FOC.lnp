@@ -40,6 +40,7 @@
 "foc\usbd_cdc.o"
 "foc\debug_printf.o"
 "foc\vofa.o"
+"foc\trans.o"
 --strict --scatter "FOC\FOC.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
