@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -118,6 +119,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_Device_Init();
   MX_TIM1_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim3);
 	
@@ -133,6 +135,9 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+	
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 100);
+  HAL_ADCEx_InjectedStart_IT(&hadc1);
 
   my_printf("setup done\r\n");
   /* USER CODE END 2 */
@@ -240,7 +245,14 @@ void svpwm(int angle, float m)
     TIM1->CCR3 = (uint16_t)(Tcmp3);
 }
 
-
+void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	if (hadc->Instance == ADC1)
+	{
+		LED1_ON();
+		//my_printf("ADC done\r\n");
+	}
+}
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
     //if (htim == &htim11)//f = 100 t = 10ms 
