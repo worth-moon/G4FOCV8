@@ -283,7 +283,7 @@ void svpwm(int angle, float m)
 }
 
 
-volatile float adc1_current, adc2_current, adc3_current,test_acc_angle = 1;
+volatile float adc1_current, adc2_current, adc3_current,test_acc_angle = 0.1;
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (hadc->Instance == ADC1)

@@ -1570,7 +1570,7 @@ Section Cross References
     vofa.o(.text.vofa_demo) refers to main.o(.bss.ch1) for ch1
     vofa.o(.text.vofa_demo) refers to main.o(.bss.ch2) for ch2
     vofa.o(.text.vofa_demo) refers to main.o(.bss.ch3) for ch3
-    vofa.o(.text.vofa_demo) refers to trans.o(.bss..L_MergedGlobals) for Id
+    vofa.o(.text.vofa_demo) refers to trans.o(.bss..L_MergedGlobals) for Ia
     vofa.o(.text.vofa_demo) refers to vofa.o(.bss.cnt) for cnt
     vofa.o(.text.vofa_demo) refers to vofa.o(.bss.send_buf) for send_buf
     vofa.o(.text.vofa_demo) refers to usbd_cdc_if.o(.text.CDC_Transmit_FS) for CDC_Transmit_FS
