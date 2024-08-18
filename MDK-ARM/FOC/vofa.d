@@ -39,4 +39,4 @@ foc/vofa.o: ..\Core\BSP\UART_USB\vofa.c ..\Core\BSP\UART_USB\vofa.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Core\Inc\usart.h ..\Core\Inc\tim.h ..\USB_Device\App\usb_device.h \
-  ..\Core\Inc\gpio.h
+  ..\Core\Inc\gpio.h ..\Core\BSP\FOC\Coordinate_transformation\trans.h

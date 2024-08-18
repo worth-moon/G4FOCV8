@@ -45,7 +45,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define ADC_12BIT (4096.0f)
+#define ADC_REF (3.3f)
+#define OPAMP_AU (20.0f)
+#define CURRENT_RS (0.005f)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -70,16 +73,19 @@ const char* buttonStateStrings[] = {
 };
 
 float foc_angle;
+volatile float Ia_offset, Ib_offset, Ic_offset;
 
-extern float theta_angle;
-extern float Vq;
-extern float Tcmp1, Tcmp2, Tcmp3;
+int foc_flag = 0;
+//extern float theta_angle;
+//extern float Vq;
+//extern float Tcmp1, Tcmp2, Tcmp3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void svpwm(int angle, float m);
+void ADC_Count_Caloffset();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -136,30 +142,38 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
 	
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 100);
+	//__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 100);
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 2304);
   HAL_ADCEx_InjectedStart_IT(&hadc1);
-
+  ADC_Count_Caloffset();
+  foc_flag = 1;
   my_printf("setup done\r\n");
+  //HAL_Delay(3000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      static int tick;
-      tick++;
-      if (tick == 10)
-      {
-          foc_angle += 0.1;
-        if (foc_angle > 360)
-            foc_angle = 0;
-        svpwm((int)foc_angle, 0.5);
- 
-          //vofa_demo();
-          tick = 0;
-          //my_printf("tick %d\r\n", tick);
-      }
-      
+      //static uint32_t tick;
+      //tick++;
+      //if (tick == 10)
+      //{
+      //    foc_angle += 0.1;
+      //  if (foc_angle > 360)
+      //      foc_angle = 0;
+      //  svpwm((int)foc_angle, 0.5);
+      //    
+          vofa_demo();
+      //    tick = 0;
+      //    //my_printf("tick %d\r\n", tick);
+      //}
+      //my_printf("Ia = %f, Ib = %f, Ic = %f\r\n", Ia, Ib, Ic);
+      //HAL_Delay(1000);
+//      vofa_send_data(0, Ia);
+//      vofa_send_data(1, Ib);
+//      vofa_send_data(2, Ic);
+//      vofa_sendframetail();
 			//HAL_Delay(1);
       //foc_angle += 1;
       //if (foc_angle > 360)
@@ -169,8 +183,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      handleButtonState();
-      task_run_key();
+//      handleButtonState();
+//      task_run_key();
   }
   /* USER CODE END 3 */
 }
@@ -222,6 +236,29 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+    int16_t a, b, c, bus;
+    uint16_t Ia_raw, Ib_raw, Ic_raw;
+void ADC_Count_Caloffset()
+{
+
+    for (int i = 0; i < 16; ++i)
+    {
+        HAL_Delay(1);
+        Ia_raw = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
+        Ib_raw = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_2);
+        Ic_raw = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_3);
+        a += Ia_raw;
+        b += Ib_raw;
+        c += Ic_raw;
+    }
+    //右移四位，相当于 ÷16
+    Ia_offset = a / 16.0f;
+    Ib_offset = b / 16.0f;
+    Ic_offset = c / 16.0f;
+
+    my_printf("Ia_offset = %f, Ib_offset = %f, Ic_offset = %f\r\n", Ia_offset, Ib_offset, Ic_offset);
+}
+
 float ch1, ch2, ch3;						//通道1、2、3的装载值
 void svpwm(int angle, float m)
 {
@@ -245,11 +282,39 @@ void svpwm(int angle, float m)
     TIM1->CCR3 = (uint16_t)(Tcmp3);
 }
 
+
+volatile float adc1_current, adc2_current, adc3_current,test_acc_angle = 1;
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (hadc->Instance == ADC1)
 	{
 		LED1_ON();
+        adc1_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
+        adc2_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_2);
+        adc3_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_3);
+
+        //Ia = (float)(adc1_current - Ia_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        //Ib = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        //Ic = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        Ia = (float)(adc1_current - Ia_offset) ;
+        Ib = (float)(adc2_current - Ib_offset) ;
+        Ic = (float)(adc3_current - Ic_offset) ;
+        //Ia = adc1_current;
+        //Ib = adc2_current;
+        //Ic = adc3_current;
+
+        clark_transf();
+        park_transf();
+
+        if (foc_flag)
+        {
+            foc_angle += test_acc_angle;
+            if (foc_angle > 360)
+                foc_angle = 0;
+            svpwm((int)foc_angle, 0.5);
+        }
+
+		LED1_OFF();
 		//my_printf("ADC done\r\n");
 	}
 }

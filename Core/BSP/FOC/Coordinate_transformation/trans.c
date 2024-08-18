@@ -1,14 +1,15 @@
 #include "trans.h"
-float theta_angle;
-float theta_hudu;
-float sin_val;
-float cos_val;
+volatile float theta_angle;
+volatile float theta_hudu;
+volatile float sin_val;
+volatile float cos_val;
 
-float Iq, Id, Ialpha, Ibeta;
-float Vd, Vq, Valpha, Vbeta;
-float Ia, Ib, Ic;
-float Tpwm_temp, Udc_temp;
-float Tcmp1, Tcmp2, Tcmp3;
+volatile float Iq, Id, Ialpha, Ibeta;
+volatile float Vd, Vq, Valpha, Vbeta;
+volatile float Ia, Ib, Ic;
+volatile float Tpwm_temp, Udc_temp;
+volatile float Tcmp1, Tcmp2, Tcmp3;
+
 //角度自增，而后传给tran_angle()，再调用sin_cos_val()，进而调用反PARK变换，最后调用SVPWM计算，Vq和Vd也需要提前指定；
 
 void tran_angle(float angle)
