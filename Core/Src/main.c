@@ -94,6 +94,25 @@ void ADC_Count_Caloffset();
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+/*
+* 测相电阻  0.0925  Ω
+*   黑白 0.186    0.187/0.185
+*   黑灰 0.185    0.185
+*   白灰          0.185
+* 测相电感
+*   q               25.2545微亨
+*     50.076
+*     50.454
+*     50.509
+*   d               20.281
+*       40.873
+*       40.562
+*       40.748
+*   黑白 
+* 
+* 测好了，然后决定用现成的
+* 
+*/
 
 /* USER CODE END 0 */
 
@@ -303,8 +322,12 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         adc3_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_3);
 
         Ia = (float)(adc1_current - Ia_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        Ib = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        Ic = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        Ic = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        Ib = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+
+        Ia = -Ia;
+        Ib = -Ib;
+        Ic = -Ic;
         //Ia = (float)(adc1_current - Ia_offset) ;
         //Ic = (float)(adc2_current - Ib_offset) ;
         //Ib = (float)(adc3_current - Ic_offset) ;
