@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -36,6 +37,7 @@
 #include "math.h"
 
 #include "trans.h"
+#include "mt6816.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,6 +78,8 @@ float foc_angle;
 volatile float Ia_offset, Ib_offset, Ic_offset;
 
 int foc_flag = 0;
+
+volatile float mt6816_angle;
 //extern float theta_angle;
 //extern float Vq;
 //extern float Tcmp1, Tcmp2, Tcmp3;
@@ -126,6 +130,7 @@ int main(void)
   MX_USB_Device_Init();
   MX_TIM1_Init();
   MX_ADC1_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim3);
 	
@@ -143,9 +148,11 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
 	
 	//__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 100);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 2304);
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 10);
   HAL_ADCEx_InjectedStart_IT(&hadc1);
   ADC_Count_Caloffset();
+
+  MT6816_SPI_Signal_Init();
   foc_flag = 1;
   my_printf("setup done\r\n");
   //HAL_Delay(3000);
@@ -155,6 +162,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+				 
+//      HAL_Delay(1);
       //static uint32_t tick;
       //tick++;
       //if (tick == 10)
@@ -270,12 +279,12 @@ void svpwm(int angle, float m)
     anti_park_transf();
     svpwm_calc();
 
-    vofa_send_data(0, Tcmp1);
-    vofa_send_data(1, Tcmp2);
-    vofa_send_data(2, Tcmp3);
-    vofa_send_data(3, theta_angle);
+    //vofa_send_data(0, Tcmp1);
+    //vofa_send_data(1, Tcmp2);
+    //vofa_send_data(2, Tcmp3);
+    //vofa_send_data(3, theta_angle);
     //vofa_send_data(4, theta_angle);
-    vofa_sendframetail();
+    //vofa_sendframetail();
     
     TIM1->CCR1 = (uint16_t)(Tcmp1);
     TIM1->CCR2 = (uint16_t)(Tcmp2);
@@ -283,22 +292,22 @@ void svpwm(int angle, float m)
 }
 
 
-volatile float adc1_current, adc2_current, adc3_current,test_acc_angle = 0.1;
+volatile float adc1_current, adc2_current, adc3_current,test_acc_angle = 0.5;
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (hadc->Instance == ADC1)
 	{
-		LED1_ON();
+				LED1_ON();
         adc1_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
         adc2_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_2);
         adc3_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_3);
 
-        //Ia = (float)(adc1_current - Ia_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        //Ib = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        //Ic = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        Ia = (float)(adc1_current - Ia_offset) ;
-        Ib = (float)(adc2_current - Ib_offset) ;
-        Ic = (float)(adc3_current - Ic_offset) ;
+        Ia = (float)(adc1_current - Ia_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        Ib = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        Ic = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        //Ia = (float)(adc1_current - Ia_offset) ;
+        //Ic = (float)(adc2_current - Ib_offset) ;
+        //Ib = (float)(adc3_current - Ic_offset) ;
         //Ia = adc1_current;
         //Ib = adc2_current;
         //Ic = adc3_current;
@@ -308,6 +317,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 
         if (foc_flag)
         {
+					mt6816_angle = MT6816_Get_AngleData();
             foc_angle += test_acc_angle;
             if (foc_angle > 360)
                 foc_angle = 0;

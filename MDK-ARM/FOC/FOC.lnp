@@ -3,6 +3,7 @@
 "foc\main.o"
 "foc\gpio.o"
 "foc\adc.o"
+"foc\spi.o"
 "foc\tim.o"
 "foc\usart.o"
 "foc\stm32g4xx_it.o"
@@ -26,6 +27,8 @@
 "foc\stm32g4xx_hal_adc.o"
 "foc\stm32g4xx_hal_adc_ex.o"
 "foc\stm32g4xx_ll_adc.o"
+"foc\stm32g4xx_hal_spi.o"
+"foc\stm32g4xx_hal_spi_ex.o"
 "foc\stm32g4xx_hal_tim.o"
 "foc\stm32g4xx_hal_tim_ex.o"
 "foc\stm32g4xx_hal_uart.o"
@@ -45,6 +48,7 @@
 "foc\debug_printf.o"
 "foc\vofa.o"
 "foc\trans.o"
+"foc\mt6816.o"
 --strict --scatter "FOC\FOC.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

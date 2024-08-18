@@ -111,6 +111,8 @@ void Error_Handler(void);
 #define HIN2_GPIO_Port GPIOA
 #define HIN3_Pin GPIO_PIN_10
 #define HIN3_GPIO_Port GPIOA
+#define CSN_Pin GPIO_PIN_2
+#define CSN_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
 #define LED1_ON() HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1)
