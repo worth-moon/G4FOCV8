@@ -1,6 +1,5 @@
-foc/mt6816.o: ..\Core\BSP\FOC\MT6816\mt6816.c \
-  ..\Core\BSP\FOC\MT6816\mt6816.h ..\Core\Inc\spi.h ..\Core\Inc\main.h \
-  ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
+foc/foc.o: ..\Core\BSP\FOC\FOC_LAB\foc.c ..\Core\BSP\FOC\FOC_LAB\foc.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
   ..\Core\Inc\stm32g4xx_hal_conf.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_def.h \
@@ -31,7 +30,8 @@ foc/mt6816.o: ..\Core\BSP\FOC\MT6816\mt6816.c \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_spi_ex.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\tim.h ..\USB_Device\App\usb_device.h \
+  ..\Core\Inc\adc.h ..\Core\Inc\spi.h ..\Core\Inc\tim.h \
+  ..\USB_Device\App\usb_device.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
   ..\USB_Device\Target\usbd_conf.h ..\Core\Inc\gpio.h \
   ..\Core\BSP\KEY_BSP\KEY\key_app.h ..\Core\BSP\KEY_BSP\KEY\key.h \
@@ -41,4 +41,5 @@ foc/mt6816.o: ..\Core\BSP\FOC\MT6816\mt6816.c \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Core\BSP\UART_USB\vofa.h \
-  ..\Core\BSP\FOC\Coordinate_transformation\trans.h
+  ..\Core\BSP\FOC\Coordinate_transformation\trans.h \
+  ..\Core\BSP\FOC\MT6816\mt6816.h

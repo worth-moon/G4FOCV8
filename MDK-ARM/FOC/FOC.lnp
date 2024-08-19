@@ -46,6 +46,7 @@
 "foc\vofa.o"
 "foc\trans.o"
 "foc\mt6816.o"
+"foc\foc.o"
 --strict --scatter "FOC\FOC.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

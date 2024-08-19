@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G474xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include;../Core/BSP/KEY_BSP/KEY;../Core/BSP/KEY_BSP/Ringbuff;../USB_Device/App;../USB_Device/Target;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Core/BSP/UART_USB;../Core/BSP/FOC/Coordinate_transformation;../Core/BSP/FOC/MT6816</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include;../Core/BSP/KEY_BSP/KEY;../Core/BSP/KEY_BSP/Ringbuff;../USB_Device/App;../USB_Device/Target;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Core/BSP/UART_USB;../Core/BSP/FOC/Coordinate_transformation;../Core/BSP/FOC/MT6816;..\Core\BSP\FOC\FOC_LAB</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1875,6 +1875,16 @@
               <FileName>mt6816.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Core\BSP\FOC\MT6816\mt6816.h</FilePath>
+            </File>
+            <File>
+              <FileName>foc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\BSP\FOC\FOC_LAB\foc.c</FilePath>
+            </File>
+            <File>
+              <FileName>foc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\BSP\FOC\FOC_LAB\foc.h</FilePath>
             </File>
           </Files>
         </Group>

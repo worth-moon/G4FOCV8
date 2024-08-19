@@ -31,6 +31,12 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "adc.h"
+#include "spi.h"
+#include "tim.h"
+#include "usb_device.h"
+#include "gpio.h"
+
 #include "key_app.h"
 #include "key.h"
 
@@ -38,11 +44,10 @@ extern "C" {
 #include "vofa.h"
 
 #include "string.h"
+#include "math.h"
 
-#include "tim.h"
-//#include "usart.h"
-#include "usb_device.h"
-#include "gpio.h"
+#include "trans.h"
+#include "mt6816.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

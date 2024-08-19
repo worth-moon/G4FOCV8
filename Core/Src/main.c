@@ -37,6 +37,7 @@
 
 #include "trans.h"
 #include "mt6816.h"
+#include "foc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,7 +77,7 @@ const char* buttonStateStrings[] = {
 float foc_angle;
 volatile float Ia_offset, Ib_offset, Ic_offset;
 
-int foc_flag = 0;
+int foc_start_flag = 0;
 
 volatile float mt6816_angle;
 //extern float theta_angle;
@@ -164,18 +165,15 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
 	
-	//__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 100);
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 10);
+	
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, __HAL_TIM_GET_AUTORELOAD(&htim1) - 10);
   HAL_ADCEx_InjectedStart_IT(&hadc1);
   ADC_Count_Caloffset();
 
   MT6816_SPI_Signal_Init();
-  foc_flag = 1;
+  foc_start_flag = 1;
 	
-	  //HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_SET);
   my_printf("setup done\r\n");
-  //HAL_Delay(3000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -183,37 +181,15 @@ int main(void)
   while (1)
   {
 				 
-//      HAL_Delay(1);
-      //static uint32_t tick;
-      //tick++;
-      //if (tick == 10)
-      //{
-      //    foc_angle += 0.1;
-      //  if (foc_angle > 360)
-      //      foc_angle = 0;
-      //  svpwm((int)foc_angle, 0.5);
-      //    
+
           vofa_demo();
-      //    tick = 0;
-      //    //my_printf("tick %d\r\n", tick);
-      //}
-      //my_printf("Ia = %f, Ib = %f, Ic = %f\r\n", Ia, Ib, Ic);
-      //HAL_Delay(1000);
-//      vofa_send_data(0, Ia);
-//      vofa_send_data(1, Ib);
-//      vofa_send_data(2, Ic);
-//      vofa_sendframetail();
-			//HAL_Delay(1);
-      //foc_angle += 1;
-      //if (foc_angle > 360)
-      //    foc_angle = 0;
-      //svpwm((int)foc_angle, 0.5);
-			//HAL_Delay(1);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//      handleButtonState();
-//      task_run_key();
+          //如果波形异常，可能是这俩语句占用时间
+      handleButtonState();
+      task_run_key();
   }
   /* USER CODE END 3 */
 }
@@ -294,17 +270,10 @@ void svpwm(int angle, float m)
 	theta_angle = angle;
 	Vq = m;
 	
-    tran_angle(theta_angle);
-    sin_cos_val();
-    anti_park_transf();
-    svpwm_calc();
-
-    //vofa_send_data(0, Tcmp1);
-    //vofa_send_data(1, Tcmp2);
-    //vofa_send_data(2, Tcmp3);
-    //vofa_send_data(3, theta_angle);
-    //vofa_send_data(4, theta_angle);
-    //vofa_sendframetail();
+    tran_angle(theta_angle);                //角度转弧度
+    sin_cos_val();                          //三角变换
+    anti_park_transf();                     //旋转转静止坐标轴
+    svpwm_calc();                           //SVPWM转三相
     
     TIM1->CCR1 = (uint16_t)(Tcmp1);
     TIM1->CCR2 = (uint16_t)(Tcmp2);
@@ -317,8 +286,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (hadc->Instance == ADC1)
 	{
-				HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_SET);
-				LED1_ON();
+        //电流采样
         adc1_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
         adc2_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_2);
         adc3_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_3);
@@ -330,50 +298,25 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         Ia = -Ia;
         Ib = -Ib;
         Ic = -Ic;
-        //Ia = (float)(adc1_current - Ia_offset) ;
-        //Ic = (float)(adc2_current - Ib_offset) ;
-        //Ib = (float)(adc3_current - Ic_offset) ;
-        //Ia = adc1_current;
-        //Ib = adc2_current;
-        //Ic = adc3_current;
 
-        clark_transf();
-        park_transf();
-
-        if (foc_flag)
+        //FOC_RUN
+        if (foc_start_flag)
         {
-					//mt6816_angle = MT6816_Get_AngleData();
-            foc_angle += test_acc_angle;
-            if (foc_angle > 360)
-                foc_angle = 0;
-            svpwm((int)foc_angle, 0.5);
+            //观测角度
+            mt6816_angle = MT6816_Get_AngleData();
+			//VF模式
+            VF_RUN();
+            //观测电流
+            clark_transf();
+            park_transf();
+		    
+
         }
 
-		LED1_OFF();
-				HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_RESET);
-		//my_printf("ADC done\r\n");
 	}
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-    //if (htim == &htim11)//f = 100 t = 10ms 
-    //{
-
-    //}
-    //else if (htim == &htim12)//f = 10k t = 100us
-    //{
-
-    //}
-    //else if (htim == &htim13)//f = 5k t = 200us
-    //{
-
-    //}
-    //else if (htim == &htim14)//f = 1k t = 1ms 
-    //{
-    //    //按键检测提供1ms心跳
-    //    
-    //}
-
     if (htim == &htim3)
     {
         task_listen_key();
