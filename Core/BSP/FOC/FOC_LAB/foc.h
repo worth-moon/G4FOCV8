@@ -6,9 +6,7 @@
 
 void VF_RUN(void);
 void IF_RUN(void);
-
-
-
-
+void Calibration_Zero(void);
+void Voltage_Open_Loop(void);
 
 #endif 

@@ -309,8 +309,8 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
             //VF_RUN();
             //¹Û²âµçÁ÷
 
-            IF_RUN();
-
+            //IF_RUN();
+            Voltage_Open_Loop();
 		    
 
         }
