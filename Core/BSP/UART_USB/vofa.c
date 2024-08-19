@@ -159,14 +159,16 @@ void vofa_demo(void)
 	vofa_send_data(1, ch2);
 	vofa_send_data(2, ch3);
 	// Call the function to store the data in the buffer
-	vofa_send_data(0, Ia);
-	vofa_send_data(1, Ib);
-	vofa_send_data(2, Ic);
-	vofa_send_data(3, Ialpha);
-	vofa_send_data(4, Ibeta);
-	vofa_send_data(5, Id);
-	vofa_send_data(6, Iq);
+	vofa_send_data(3, Ia);
+	vofa_send_data(4, Ib);
+	vofa_send_data(5, Ic);
+	vofa_send_data(6, Ialpha);
+	vofa_send_data(7, Ibeta);
+	vofa_send_data(8, Id);
+	vofa_send_data(9, Iq);
 
+	vofa_send_data(10, Vd);
+	vofa_send_data(11, Vq);
 	vofa_sendframetail();
 }
 

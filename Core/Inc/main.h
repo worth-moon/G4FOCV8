@@ -48,6 +48,8 @@ extern "C" {
 
 #include "trans.h"
 #include "mt6816.h"
+
+#include "position_pid.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

@@ -171,6 +171,7 @@ int main(void)
   ADC_Count_Caloffset();
 
   MT6816_SPI_Signal_Init();
+  PID_param_init();
   foc_start_flag = 1;
 	
   my_printf("setup done\r\n");
@@ -303,12 +304,13 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         if (foc_start_flag)
         {
             //观测角度
-            mt6816_angle = MT6816_Get_AngleData();
+            //mt6816_angle = MT6816_Get_AngleData();
 			//VF模式
-            VF_RUN();
+            //VF_RUN();
             //观测电流
-            clark_transf();
-            park_transf();
+
+            IF_RUN();
+
 		    
 
         }
