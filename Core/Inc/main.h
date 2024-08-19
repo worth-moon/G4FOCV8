@@ -40,7 +40,7 @@ extern "C" {
 #include "string.h"
 
 #include "tim.h"
-#include "usart.h"
+//#include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
 /* USER CODE END Includes */
@@ -91,6 +91,10 @@ void Error_Handler(void);
 #define APH4_GPIO_Port GPIOC
 #define RGB_Pin GPIO_PIN_5
 #define RGB_GPIO_Port GPIOA
+#define CH1_Pin GPIO_PIN_10
+#define CH1_GPIO_Port GPIOB
+#define CH2_Pin GPIO_PIN_11
+#define CH2_GPIO_Port GPIOB
 #define LIN1_Pin GPIO_PIN_13
 #define LIN1_GPIO_Port GPIOB
 #define LIN2_Pin GPIO_PIN_14

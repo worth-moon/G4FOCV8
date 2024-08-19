@@ -5,11 +5,11 @@
 #include "usbd_cdc_if.h"
 #include <string.h> // 包含字符串处理函数声明
 #include <stdarg.h> // 包含可变参数函数处理宏声明
-#include "usart.h"
+//#include "usart.h"
 
 //myprintf相关
 #define DMA_MODE 0
-#define USB_DEBUG 0
+#define USB_DEBUG 1
 #define UART_HANDLER huart3
 #define BUFFER_SIZE 100 // 定义缓冲区大小为100字节
 

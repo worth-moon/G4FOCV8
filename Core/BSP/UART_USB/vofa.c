@@ -1,7 +1,7 @@
 #include "vofa.h"
 #include "usbd_cdc_if.h"
 #include "math.h"
-#include "usart.h"
+//#include "usart.h"
 #include "trans.h"
 uint8_t send_buf[MAX_BUFFER_SIZE];
 uint16_t cnt = 0;

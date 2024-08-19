@@ -21,7 +21,6 @@
 #include "adc.h"
 #include "spi.h"
 #include "tim.h"
-#include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
 
@@ -145,7 +144,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM3_Init();
-  MX_USART3_UART_Init();
   MX_USB_Device_Init();
   MX_TIM1_Init();
   MX_ADC1_Init();
@@ -173,6 +171,9 @@ int main(void)
 
   MT6816_SPI_Signal_Init();
   foc_flag = 1;
+	
+	  //HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_SET);
   my_printf("setup done\r\n");
   //HAL_Delay(3000);
   /* USER CODE END 2 */
@@ -316,6 +317,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (hadc->Instance == ADC1)
 	{
+				HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_SET);
 				LED1_ON();
         adc1_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
         adc2_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_2);
@@ -340,7 +342,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 
         if (foc_flag)
         {
-					mt6816_angle = MT6816_Get_AngleData();
+					//mt6816_angle = MT6816_Get_AngleData();
             foc_angle += test_acc_angle;
             if (foc_angle > 360)
                 foc_angle = 0;
@@ -348,6 +350,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         }
 
 		LED1_OFF();
+				HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_RESET);
 		//my_printf("ADC done\r\n");
 	}
 }
