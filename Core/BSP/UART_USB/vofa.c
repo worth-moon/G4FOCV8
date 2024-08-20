@@ -169,6 +169,10 @@ void vofa_demo(void)
 
 	vofa_send_data(10, Vd);
 	vofa_send_data(11, Vq);
+	vofa_send_data(12, xian_vel);
+	vofa_send_data(13, xian_vel_filt);
+	vofa_send_data(14, Iq_ref);
+	vofa_send_data(15, vel_ref);
 	vofa_sendframetail();
 }
 

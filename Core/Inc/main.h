@@ -51,6 +51,7 @@ extern "C" {
 
 #include "position_pid.h"
 #include "pid.h"
+#include "foc.h"
 /* USER CODE END Includes */
 
 /* Exported types -----1------------------------------------------------------*/
@@ -79,7 +80,7 @@ typedef enum {
 extern ButtonState button;
 extern const char* buttonStateStrings[];
 extern float ch1, ch2, ch3;
-extern Pid_Controller_t GI_D,GI_Q;
+extern Pid_Controller_t GI_D,GI_Q,GVEL;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -151,14 +152,21 @@ void Error_Handler(void);
 #define GI_D_KI (56.23704f)//24.0f  Drag_IF_Mode
 #define GI_D_KD (0.0f)
 #define GI_D_KIS (20.0f)
-#define GI_D_RANGE (3.0f)
+#define GI_D_RANGE (1.0f)
 
 #define GI_Q_FREQUENCY (10000.0f)
 #define GI_Q_KP (0.012835f)//1.0f Drag_IF_Mode
 #define GI_Q_KI (56.23704f)//24.0f  Drag_IF_Mode
 #define GI_Q_KD (0.0f)
 #define GI_Q_KIS (20.0f)
-#define GI_Q_RANGE (1.0f)
+#define GI_Q_RANGE (2.0f)
+
+#define GVEL_FREQUENCY (5000.0f)
+#define GVEL_KP (0.01f)
+#define GVEL_KI (0.01f)
+#define GVEL_KD (0.0f)
+#define GVEL_KIS (20.0f)
+#define GVEL_RANGE (1.5f)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

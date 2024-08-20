@@ -43,4 +43,4 @@ foc/stm32g4xx_hal_msp.o: ..\Core\Src\stm32g4xx_hal_msp.c \
   ..\Core\BSP\UART_USB\vofa.h \
   ..\Core\BSP\FOC\Coordinate_transformation\trans.h \
   ..\Core\BSP\FOC\MT6816\mt6816.h ..\Core\BSP\FOC\PID\position_pid.h \
-  ..\Core\BSP\FOC\PID\pid.h
+  ..\Core\BSP\FOC\PID\pid.h ..\Core\BSP\FOC\FOC_LAB\foc.h

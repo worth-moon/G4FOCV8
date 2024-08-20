@@ -81,6 +81,7 @@ volatile float mt6816_angle;
 
 Pid_Controller_t GI_D;
 Pid_Controller_t GI_Q;
+Pid_Controller_t GVEL;
 //extern float theta_angle;
 //extern float Vq;
 //extern float Tcmp1, Tcmp2, Tcmp3;
@@ -176,7 +177,7 @@ int main(void)
 
   Pid_Init(&GI_D, GI_D_KP, GI_D_KI, GI_D_KD, GI_D_KIS, 1.0f / GI_D_FREQUENCY, GI_D_RANGE);
   Pid_Init(&GI_Q, GI_Q_KP, GI_Q_KI, GI_Q_KD, GI_Q_KIS, 1.0f / GI_D_FREQUENCY, GI_Q_RANGE);
-
+  Pid_Init(&GVEL, GVEL_KP, GVEL_KI, GVEL_KD, GVEL_KIS, 1.0f / GVEL_FREQUENCY, GVEL_RANGE);
   foc_start_flag = 1;
 	
   my_printf("setup done\r\n");
@@ -314,7 +315,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         if (foc_start_flag)
         {
 						HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_SET);
-            Current_Closed_Loop();
+            Velocity_Closed_Loop();
 						HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_RESET);
         }
         HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_RESET);
