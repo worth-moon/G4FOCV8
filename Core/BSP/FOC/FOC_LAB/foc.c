@@ -149,25 +149,10 @@ void Current_Closed_Loop(void)
     //电流采样
     clark_transf();
     park_transf();
-    //Vq = PID_realize_q(1.0f, Iq);  //Vq为0.5的时候，Iq大概在1A左右
-    //Vq = 0.5f;
-    //Vd = PID_realize_d(0.0f, Id);
-    //Vd = 0.0f;
-    float Id_ref = 0.0f, Iq_ref = -1.0f;
+
+    float Id_ref = 0.0f, Iq_ref = 1.0f;
     Vd = -Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
-    //pid限幅
-    //float max_Vq = 3.0f;
-    //float max_Vd = 1.0f;
-    //if (Vq > max_Vq)
-    //    Vq = max_Vq;
-    //if (Vq < -max_Vq)
-    //    Vq = -max_Vq;
-
-    //if (Vd > max_Vd)
-    //    Vd = max_Vd;
-    //if (Vd < -max_Vd)
-    //    Vd = -max_Vd;
     //坐标变换
     anti_park_transf();                     //旋转转静止坐标轴
     svpwm_calc();                           //SVPWM转三相

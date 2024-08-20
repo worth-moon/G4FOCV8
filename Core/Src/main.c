@@ -292,33 +292,32 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (hadc->Instance == ADC1)
 	{
+        HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_SET);
         //电流采样
         adc1_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
         adc2_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_2);
         adc3_current = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_3);
+        //* 3.3/4096/0.1    0.008056640625
+        //Ia = (float)(adc1_current - Ia_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        //Ic = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        //Ib = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
 
-        Ia = (float)(adc1_current - Ia_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        Ic = (float)(adc2_current - Ib_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
-        Ib = (float)(adc3_current - Ic_offset) * ADC_REF / ADC_12BIT / (CURRENT_RS * OPAMP_AU);
+        //Ia = -Ia;
+        //Ib = -Ib;
+        //Ic = -Ic;
 
-        Ia = -Ia;
-        Ib = -Ib;
-        Ic = -Ic;
+        Ia = -(float)(adc1_current - Ia_offset) * 0.008056640625f;
+        Ic = -(float)(adc2_current - Ib_offset) * 0.008056640625f;
+        Ib = -(float)(adc3_current - Ic_offset) * 0.008056640625f;
 
         //FOC_RUN
         if (foc_start_flag)
         {
-            //观测角度
-            //mt6816_angle = MT6816_Get_AngleData();
-			//VF模式
-            //VF_RUN();
-            //观测电流
-
-            //IF_RUN();
+						HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_SET);
             Current_Closed_Loop();
-		    
-
+						HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_RESET);
         }
+        HAL_GPIO_WritePin(CH1_GPIO_Port, CH1_Pin, GPIO_PIN_RESET);
 
 	}
 }
