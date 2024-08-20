@@ -39,7 +39,7 @@ foc/debug_printf.o: ..\Core\BSP\UART_USB\debug_printf.c \
   ..\Core\BSP\UART_USB\vofa.h \
   ..\Core\BSP\FOC\Coordinate_transformation\trans.h \
   ..\Core\BSP\FOC\MT6816\mt6816.h ..\Core\BSP\FOC\PID\position_pid.h \
-  ..\USB_Device\App\usbd_cdc_if.h \
+  ..\Core\BSP\FOC\PID\pid.h ..\USB_Device\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h \

@@ -1887,6 +1887,16 @@
               <FilePath>..\Core\BSP\FOC\FOC_LAB\foc.h</FilePath>
             </File>
             <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\BSP\FOC\PID\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\BSP\FOC\PID\pid.h</FilePath>
+            </File>
+            <File>
               <FileName>position_pid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\BSP\FOC\PID\position_pid.c</FilePath>
@@ -1895,16 +1905,6 @@
               <FileName>position_pid.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Core\BSP\FOC\PID\position_pid.h</FilePath>
-            </File>
-            <File>
-              <FileName>zengliang_pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\BSP\FOC\PID\zengliang_pid.c</FilePath>
-            </File>
-            <File>
-              <FileName>zengliang_pid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\BSP\FOC\PID\zengliang_pid.h</FilePath>
             </File>
           </Files>
         </Group>

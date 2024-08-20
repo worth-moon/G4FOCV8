@@ -37,7 +37,7 @@ void park_transf()
 {
 	Iq = Ialpha * cos_val + Ibeta * sin_val;
 	Id = -Ialpha * sin_val + Ibeta * cos_val;
-    //Iq = -Iq; //交流变直流
+    //Iq =-Iq; //交流变直流
     //Id = -Id;
 }
 /***************************************

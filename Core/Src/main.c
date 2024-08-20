@@ -38,6 +38,7 @@
 #include "trans.h"
 #include "mt6816.h"
 #include "foc.h"
+#include "pid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,10 +48,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define ADC_12BIT (4096.0f)
-#define ADC_REF (3.3f)
-#define OPAMP_AU (20.0f)
-#define CURRENT_RS (0.005f)
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -80,6 +78,9 @@ volatile float Ia_offset, Ib_offset, Ic_offset;
 int foc_start_flag = 0;
 
 volatile float mt6816_angle;
+
+Pid_Controller_t GI_D;
+Pid_Controller_t GI_Q;
 //extern float theta_angle;
 //extern float Vq;
 //extern float Tcmp1, Tcmp2, Tcmp3;
@@ -172,6 +173,10 @@ int main(void)
 
   MT6816_SPI_Signal_Init();
   PID_param_init();
+
+  Pid_Init(&GI_D, GI_D_KP, GI_D_KI, GI_D_KD, GI_D_KIS, 1.0f / GI_D_FREQUENCY, GI_D_RANGE);
+  Pid_Init(&GI_Q, GI_Q_KP, GI_Q_KI, GI_Q_KD, GI_Q_KIS, 1.0f / GI_D_FREQUENCY, GI_Q_RANGE);
+
   foc_start_flag = 1;
 	
   my_printf("setup done\r\n");
@@ -310,7 +315,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
             //¹Û²âµçÁ÷
 
             //IF_RUN();
-            Voltage_Open_Loop();
+            Current_Closed_Loop();
 		    
 
         }

@@ -50,9 +50,10 @@ extern "C" {
 #include "mt6816.h"
 
 #include "position_pid.h"
+#include "pid.h"
 /* USER CODE END Includes */
 
-/* Exported types ------------------------------------------------------------*/
+/* Exported types -----1------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 typedef enum {
     WAITING,              // µÈ´ý£¨¿ÕÏÐ×´Ì¬£©
@@ -78,6 +79,7 @@ typedef enum {
 extern ButtonState button;
 extern const char* buttonStateStrings[];
 extern float ch1, ch2, ch3;
+extern Pid_Controller_t GI_D,GI_Q;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -138,6 +140,25 @@ void Error_Handler(void);
 #define RGB_ON() HAL_GPIO_WritePin(RGB_GPIO_Port, RGB_Pin, 1)
 #define RGB_OFF() HAL_GPIO_WritePin(RGB_GPIO_Port, RGB_Pin, 0)
 
+
+#define ADC_12BIT (4096.0f)
+#define ADC_REF (3.3f)
+#define OPAMP_AU (20.0f)
+#define CURRENT_RS (0.005f)
+
+#define GI_D_FREQUENCY (10000.0f)
+#define GI_D_KP (0.011175f)//1.0f Drag_IF_Mode
+#define GI_D_KI (56.23704f)//24.0f  Drag_IF_Mode
+#define GI_D_KD (0.0f)
+#define GI_D_KIS (20.0f)
+#define GI_D_RANGE (3.0f)
+
+#define GI_Q_FREQUENCY (10000.0f)
+#define GI_Q_KP (0.012835f)//1.0f Drag_IF_Mode
+#define GI_Q_KI (56.23704f)//24.0f  Drag_IF_Mode
+#define GI_Q_KD (0.0f)
+#define GI_Q_KIS (20.0f)
+#define GI_Q_RANGE (1.0f)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

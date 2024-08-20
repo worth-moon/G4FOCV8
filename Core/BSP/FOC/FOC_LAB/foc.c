@@ -1,9 +1,15 @@
 #include "foc.h"
+#include "pid.h"
 
 #define MATH_PI 3.14159265358979323846f
 #define MATH_2PI 6.28318530717958647693f
 #define NUM_OF_POLE_PAIRS 7.0f
 
+//#define GI_D_KP (0.140358f)//1.0f Drag_IF_Mode
+//#define GI_D_KI (706.3372224f)//24.0f  Drag_IF_Mode
+
+//#define GI_Q_KP (0.1612076f)//1.0f Drag_IF_Mode
+//#define GI_Q_KI (706.3372224f)//24.0f  Drag_IF_Mode
 float self_angle = 0,spi_pulse,mag_hudu, elec_hudu;
 
 void FOC_Init(void)
@@ -51,7 +57,7 @@ void IF_RUN(void)
     //坐标变换
     Vq = PID_realize_q(1.0f,Iq);  //Vq为0.5的时候，Iq大概在1A左右
     //Vq = 0.5f;
-    //Vd = PID_realize_q(0.0f, Id);
+    //Vd = PID_realize_d(0.0f, Id);
     Vd = 0.0f;
     //pid限幅
     float max_Vq = 0.5f;
@@ -128,3 +134,45 @@ void Voltage_Open_Loop(void)
     park_transf();
 }
 
+void Current_Closed_Loop(void)
+{
+    //角度相关
+    spi_pulse = MT6816_Get_AngleData();
+    mag_hudu = (float)((spi_pulse + 206) * MATH_2PI / 16384.0f);
+    elec_hudu = fmodf(mag_hudu * NUM_OF_POLE_PAIRS, MATH_2PI);
+    if (elec_hudu < 0)
+        elec_hudu = elec_hudu + MATH_2PI;
+
+    theta_hudu = elec_hudu;
+    sin_cos_val();                          //三角变换
+
+    //电流采样
+    clark_transf();
+    park_transf();
+    //Vq = PID_realize_q(1.0f, Iq);  //Vq为0.5的时候，Iq大概在1A左右
+    //Vq = 0.5f;
+    //Vd = PID_realize_d(0.0f, Id);
+    //Vd = 0.0f;
+    float Id_ref = 0.0f, Iq_ref = -1.0f;
+    Vd = -Pid_Cal(&GI_D, Id_ref, Id);
+    Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
+    //pid限幅
+    //float max_Vq = 3.0f;
+    //float max_Vd = 1.0f;
+    //if (Vq > max_Vq)
+    //    Vq = max_Vq;
+    //if (Vq < -max_Vq)
+    //    Vq = -max_Vq;
+
+    //if (Vd > max_Vd)
+    //    Vd = max_Vd;
+    //if (Vd < -max_Vd)
+    //    Vd = -max_Vd;
+    //坐标变换
+    anti_park_transf();                     //旋转转静止坐标轴
+    svpwm_calc();                           //SVPWM转三相
+
+    TIM1->CCR1 = (uint16_t)(Tcmp1);
+    TIM1->CCR2 = (uint16_t)(Tcmp2);
+    TIM1->CCR3 = (uint16_t)(Tcmp3);
+}

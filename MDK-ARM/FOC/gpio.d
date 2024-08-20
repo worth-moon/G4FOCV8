@@ -42,4 +42,5 @@ foc/gpio.o: ..\Core\Src\gpio.c ..\Core\Inc\gpio.h ..\Core\Inc\main.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h \
   ..\Core\BSP\UART_USB\vofa.h \
   ..\Core\BSP\FOC\Coordinate_transformation\trans.h \
-  ..\Core\BSP\FOC\MT6816\mt6816.h ..\Core\BSP\FOC\PID\position_pid.h
+  ..\Core\BSP\FOC\MT6816\mt6816.h ..\Core\BSP\FOC\PID\position_pid.h \
+  ..\Core\BSP\FOC\PID\pid.h

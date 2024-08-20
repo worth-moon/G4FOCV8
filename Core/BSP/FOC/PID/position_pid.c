@@ -9,8 +9,8 @@ void PID_param_init()
     pid_q.err = 0.0;
     pid_q.err_last = 0.0;
     pid_q.integral = 0.0;
-    pid_q.Kp = 1.0f;
-    pid_q.Ki = 0.0;
+    pid_q.Kp = 0.012835f;
+    pid_q.Ki = 56.23704f;
     pid_q.Kd = 0.0;
 	
     //pid的方向考量
@@ -20,8 +20,8 @@ void PID_param_init()
     pid_d.err = 0.0;
     pid_d.err_last = 0.0;
     pid_d.integral = 0.0;
-    pid_d.Kp = 0.0f;
-    pid_d.Ki = 0.0;
+    pid_d.Kp = 0.011175f;
+    pid_d.Ki = 56.23704f;
     pid_d.Kd = 0.0;
 
 }
