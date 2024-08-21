@@ -159,7 +159,7 @@ void Error_Handler(void);
 #define GI_Q_KI (56.23704f)//24.0f  Drag_IF_Mode
 #define GI_Q_KD (0.0f)
 #define GI_Q_KIS (20.0f)
-#define GI_Q_RANGE (2.0f)
+#define GI_Q_RANGE (5.0f)
 
 #define GVEL_FREQUENCY (5000.0f)
 #define GVEL_KP (0.01f)

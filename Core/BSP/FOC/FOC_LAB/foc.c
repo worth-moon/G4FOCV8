@@ -12,7 +12,7 @@
 //#define GI_Q_KI (706.3372224f)//24.0f  Drag_IF_Mode
 volatile float self_angle = 0,spi_pulse,mag_hudu, elec_hudu;
 volatile float Id_ref = 0.0f, Iq_ref = 1.0f;
-volatile float vel_cnt, vel_angle_0, vel_angle_1,vel,last_vel,low_alpha,vel_ref = 250.0f,vel_filt,last_vel_filt;
+volatile float vel_cnt, vel_angle_0, vel_angle_1,vel,last_vel,low_alpha,vel_ref = 1600.0f,vel_filt,last_vel_filt;
 volatile float omega_vel, vel_delta_t = 0.0002f, xian_vel,xian_vel_filt,last_xian_vel,last_xian_vel_filt;
 
 void FOC_Init(void)
