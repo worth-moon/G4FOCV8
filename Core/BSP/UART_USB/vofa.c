@@ -155,7 +155,7 @@ void vofa_demo(void)
 	ch1 = (float)TIM1->CCR1;
 	ch2 = (float)TIM1->CCR2;
 	ch3 = (float)TIM1->CCR3;
- 	vofa_send_data(0, ch1);
+ 	vofa_send_data(0, GVEL.i);
 	vofa_send_data(1, ch2);
 	vofa_send_data(2, ch3);
 	// Call the function to store the data in the buffer
