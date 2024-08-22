@@ -210,7 +210,7 @@ void Velocity_Closed_Loop(void)
 
                     //Iq_ref = Pid_Cal(&GVEL, vel_ref, vel);
                     //last_vel = vel;
-        vel_ref = 600.0f;
+        vel_ref = 160.0f;
         xian_vel_filt = LOW_PASS_FILTER(last_xian_vel_filt, xian_vel, 0.7);
         Iq_ref = Pid_Cal(&GVEL, vel_ref, xian_vel_filt);
         last_xian_vel_filt = xian_vel_filt;

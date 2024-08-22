@@ -163,13 +163,13 @@ void Error_Handler(void);
 
 #define GVEL_FREQUENCY (5000.0f)
 #define GVEL_KP (0.01f)
-#define GVEL_KI (0.03f)
+#define GVEL_KI (0.05f)
 #define GVEL_KD (0.0f)
 #define GVEL_KIS (0.0f)
 #define GVEL_RANGE (3.0f)
 
 #define GPOS_FREQUENCY (2500.0f)
-#define GPOS_KP (20.0f)
+#define GPOS_KP (20.0f)	//有震荡响应快用10 0.无震荡，响应慢是20，10.
 #define GPOS_KI (0.00f)
 #define GPOS_KD (10.0f)
 #define GPOS_KIS (0.0f)
