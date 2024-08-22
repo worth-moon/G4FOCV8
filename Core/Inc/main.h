@@ -80,7 +80,7 @@ typedef enum {
 extern ButtonState button;
 extern const char* buttonStateStrings[];
 extern float ch1, ch2, ch3;
-extern Pid_Controller_t GI_D,GI_Q,GVEL;
+extern Pid_Controller_t GI_D,GI_Q,GVEL,GPOS;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -163,10 +163,18 @@ void Error_Handler(void);
 
 #define GVEL_FREQUENCY (5000.0f)
 #define GVEL_KP (0.01f)
-#define GVEL_KI (0.01f)
+#define GVEL_KI (0.03f)
 #define GVEL_KD (0.0f)
-#define GVEL_KIS (20.0f)
-#define GVEL_RANGE (1.5f)
+#define GVEL_KIS (0.0f)
+#define GVEL_RANGE (3.0f)
+
+#define GPOS_FREQUENCY (2500.0f)
+#define GPOS_KP (20.0f)
+#define GPOS_KI (0.00f)
+#define GPOS_KD (10.0f)
+#define GPOS_KIS (0.0f)
+#define GPOS_RANGE (300.0f)//根据vq，也就是电流环的范围调，别超过最大速度的才好
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

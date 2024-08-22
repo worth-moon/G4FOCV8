@@ -240,6 +240,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>mt6816_angle</ItemText>
         </Ww>
+        <Ww>
+          <count>17</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>pos_angle_360</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>

@@ -22,9 +22,9 @@ float Pid_Cal(Pid_Controller_t *pid, float target, float curr)
   pid->prev = err;
   pid->i += err * pid->deltaT;
 
-  if (pid->i > 70.0f)
+  if (pid->i > 30.0f)
   {
-      pid->i = 0.0f;
+      pid->i = 30.0f;
   }
 
   float output = pid->kp * err + pid->ki * pid->i + pid->kd * derr;
