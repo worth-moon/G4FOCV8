@@ -318,6 +318,9 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         {
 						//HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_SET);
              VF_RUN();
+             //¹Û²âµçÁ÷
+             clark_transf();
+             park_transf();
                         //Position_Closed_Loop();
 						//HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_RESET);
         }
