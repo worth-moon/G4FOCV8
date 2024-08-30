@@ -29,7 +29,7 @@ void FOC_Init(void)
 void VF_RUN(void)
 {
     //角度相关
-    self_angle += 0.5;
+    self_angle += 0.2;
     if (self_angle > 360)
         self_angle = 0;
 
@@ -126,7 +126,7 @@ void Voltage_Open_Loop(void)
     //tran_angle(theta_angle);                //角度转弧度
     sin_cos_val();                          //三角变换
     //坐标变换
-    Vq = 3.0f;
+    Vq = 5.0f;
     Vd = 0.0f;
     anti_park_transf();                     //旋转转静止坐标轴
     svpwm_calc();                           //SVPWM转三相
@@ -187,7 +187,8 @@ void Current_Closed_Loop(void)
     clark_transf();
     park_transf();
 
-    Iq_ref = 0.5f;
+    Iq_ref = -0.5f;
+		Id_ref = 0.0f;
     Vd = -Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //坐标变换
