@@ -9,7 +9,7 @@
 
 //myprintf相关
 #define DMA_MODE 0
-#define USB_DEBUG 1
+#define USB_DEBUG 0
 #define UART_HANDLER huart3
 #define BUFFER_SIZE 100 // 定义缓冲区大小为100字节
 

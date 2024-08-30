@@ -34,3 +34,5 @@ void my_printf(const char *fmt, ...)
     // 清理变量参数列表，释放相关资源
     va_end(args);
 }
+
+//my_printf("Hello, worl%d\n", 5);

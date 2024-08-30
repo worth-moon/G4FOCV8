@@ -154,8 +154,8 @@ void Current_Closed_Loop(void)
     clark_transf();
     park_transf();
 
-    Iq_ref = -1.0f;
-    Vd = -Pid_Cal(&GI_D, Id_ref, Id);
+    Iq_ref = 1.5f;
+    Vd = Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //坐标变换
     anti_park_transf();                     //旋转转静止坐标轴
@@ -222,7 +222,7 @@ void Velocity_Closed_Loop(void)
         vel_cnt = 1;
     }
 
-    Vd = -Pid_Cal(&GI_D, Id_ref, Id);
+    Vd = Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //最大不失真电压
   //  if (SQUARE_ROOT_SUM(Vd, Vq) > 12.0f / SQRT3)
@@ -351,7 +351,7 @@ void Position_Closed_Loop(void)
         vel_cnt = 1;
     }
 
-    Vd = -Pid_Cal(&GI_D, Id_ref, Id);
+    Vd = Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //最大不失真电压
   //  if (SQUARE_ROOT_SUM(Vd, Vq) > 12.0f / SQRT3)
