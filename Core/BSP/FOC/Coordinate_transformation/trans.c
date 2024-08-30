@@ -35,8 +35,8 @@ void sin_cos_val()
 
 void park_transf()
 {
-	Iq = Ialpha * cos_val + Ibeta * sin_val;
-	Id = -Ialpha * sin_val + Ibeta * cos_val;
+	Id = Ialpha * cos_val + Ibeta * sin_val;
+	Iq = -Ialpha * sin_val + Ibeta * cos_val;
 }
 /***************************************
 功能：反PARK变换

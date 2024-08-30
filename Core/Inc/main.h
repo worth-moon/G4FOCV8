@@ -149,26 +149,26 @@ void Error_Handler(void);
 #define OPAMP_AU (20.0f)
 #define CURRENT_RS (0.005f)
 
-#define GI_D_FREQUENCY (10000.0f)
+#define GI_D_FREQUENCY (20000.0f)
 #define GI_D_KP (0.011175f)//1.0f Drag_IF_Mode
 #define GI_D_KI (56.23704f)//24.0f  Drag_IF_Mode
 #define GI_D_KD (0.0f)
 #define GI_D_KIS (20.0f)
 #define GI_D_RANGE (1.0f)
 
-#define GI_Q_FREQUENCY (10000.0f)
+#define GI_Q_FREQUENCY (20000.0f)
 #define GI_Q_KP (0.012835f)//1.0f Drag_IF_Mode
 #define GI_Q_KI (56.23704f)//24.0f  Drag_IF_Mode
 #define GI_Q_KD (0.0f)
 #define GI_Q_KIS (20.0f)
 #define GI_Q_RANGE (5.0f)
 
-#define GVEL_FREQUENCY (5000.0f)
-#define GVEL_KP (0.01f)
-#define GVEL_KI (0.05f)
+#define GVEL_FREQUENCY (1000.0f)
+#define GVEL_KP (0.015f)
+#define GVEL_KI (0.10f)
 #define GVEL_KD (0.0f)
 #define GVEL_KIS (0.0f)
-#define GVEL_RANGE (3.0f)
+#define GVEL_RANGE (6.8f)
 
 #define GPOS_FREQUENCY (2500.0f)
 #define GPOS_KP (20.0f)	//有震荡响应快用10 0.无震荡，响应慢是20，10.

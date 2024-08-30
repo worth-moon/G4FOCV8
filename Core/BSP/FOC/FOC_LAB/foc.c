@@ -13,7 +13,7 @@
 //#define GI_Q_KI (706.3372224f)//24.0f  Drag_IF_Mode
 volatile float self_angle = 0,spi_pulse,mag_hudu, elec_hudu;
 volatile float Id_ref = 0.0f, Iq_ref;
-volatile float vel_cnt, vel_angle_0, vel_angle_1,vel,last_vel,low_alpha,vel_ref,vel_filt,last_vel_filt;
+volatile float vel_cnt, vel_angle_0, vel_angle_1,vel,last_vel,low_alpha,vel_ref = 700.0f,vel_filt,last_vel_filt;
 volatile float omega_vel, vel_delta_t = 0.0002f, xian_vel,xian_vel_filt,last_xian_vel,last_xian_vel_filt;
 volatile float pos_cnt, pos_angle, last_pos_angle, pos_angle_360, pos_ref ,circle_count ,all_angle;
 
@@ -50,7 +50,7 @@ void VF_RUN(void)
 void IF_RUN(void)
 {
     //角度相关
-    self_angle += 0.5;
+    self_angle += 0.1;
     if (self_angle > 360)
         self_angle = 0;
 
@@ -61,13 +61,13 @@ void IF_RUN(void)
     //电流采样
     clark_transf();
     park_transf();
-    //坐标变换
-    Vq = PID_realize_q(1.0f,Iq);  //Vq为0.5的时候，Iq大概在1A左右
-    //Vq = 0.5f;
-    //Vd = PID_realize_d(0.0f, Id);
-    Vd = 0.0f;
+		
+		Iq_ref = 0.5f;
+		Id_ref = 0.0f;
+    Vd = Pid_Cal(&GI_D, Id_ref, Id);
+    Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //pid限幅
-    float max_Vq = 0.5f;
+    float max_Vq = 2.5f;
     float max_Vd = 0.5f;
     if(Vq > max_Vq)
         Vq = max_Vq;
@@ -171,6 +171,65 @@ void POS_Voltage_Open_Loop(void)
     park_transf();
 }
 
+void VEL_Voltage_Open_Loop(void)
+{
+    //角度相关
+    spi_pulse = AS5047_read(ANGLECOM2);
+    mag_hudu = (float)((spi_pulse + 138) * MATH_2PI / 16384.0f);
+    elec_hudu = fmodf(mag_hudu * NUM_OF_POLE_PAIRS, MATH_2PI);
+    if (elec_hudu < 0)
+        elec_hudu = elec_hudu + MATH_2PI;
+
+    theta_hudu = elec_hudu;
+    sin_cos_val();                          //三角变换
+    //电流采样
+    clark_transf();
+    park_transf();
+    //速度获取
+    if (vel_cnt == 0)
+        vel_angle_0 = mag_hudu;
+    else if (vel_cnt == 20)
+        vel_angle_1 = mag_hudu;
+    //速度获取与速度环
+    if (vel_cnt == 20)
+    {
+        //spi_pulse的每个脉冲，对应的弧度为0.00038330078125
+        //这个弧度对应的rpm是18.310546875
+        vel = (vel_angle_1 - vel_angle_0);
+        //角速度计算
+
+        omega_vel = vel / vel_delta_t;
+        //过零点保护 MATH_PI后期可能更换
+        if (vel > MATH_PI)
+            omega_vel = (vel_angle_1 - vel_angle_0 - MATH_2PI) / vel_delta_t;
+        else if (vel < -MATH_PI)
+            omega_vel = (vel_angle_1 - vel_angle_0 + MATH_2PI) / vel_delta_t;
+        //线速度计算
+        xian_vel = omega_vel * 60.0f / MATH_2PI;
+        //vel_ref = 700.0f;
+        xian_vel_filt = LOW_PASS_FILTER(last_xian_vel_filt, xian_vel, 0.7);
+        last_xian_vel_filt = xian_vel_filt;
+        Vq = Pid_Cal(&GVEL, vel_ref, xian_vel_filt);
+        vel_cnt = 0;
+    }
+    else
+    {
+        vel_cnt++;
+    }
+
+    Vd = 0;
+    //Vq = 6.8f;
+    if(Vq > 6.8f)//最大不失真电压
+        Vq = 6.8f;
+    //反park与svpwm
+    anti_park_transf();                     //旋转转静止坐标轴
+    svpwm_calc();                           //SVPWM转三相
+
+    TIM1->CCR1 = (uint16_t)(Tcmp1);
+    TIM1->CCR2 = (uint16_t)(Tcmp2);
+    TIM1->CCR3 = (uint16_t)(Tcmp3);
+}
+
 void Current_Closed_Loop(void)
 {
     //角度相关
@@ -187,9 +246,9 @@ void Current_Closed_Loop(void)
     clark_transf();
     park_transf();
 
-    Iq_ref = -0.5f;
+    Iq_ref = 0.5f;
 		Id_ref = 0.0f;
-    Vd = -Pid_Cal(&GI_D, Id_ref, Id);
+    Vd = Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //坐标变换
     anti_park_transf();                     //旋转转静止坐标轴

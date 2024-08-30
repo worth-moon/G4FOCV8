@@ -309,14 +309,14 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         //Ic = -Ic;
 
         Ia = -(float)(adc1_current - Ia_offset) * 0.008056640625f;
-        Ic = -(float)(adc2_current - Ib_offset) * 0.008056640625f;
-        Ib = -(float)(adc3_current - Ic_offset) * 0.008056640625f;
+        Ib = -(float)(adc2_current - Ib_offset) * 0.008056640625f;
+        Ic = -(float)(adc3_current - Ic_offset) * 0.008056640625f;
 
         //FOC_RUN
         if (foc_start_flag)
         {
 						//HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_SET);
-            Current_Closed_Loop();
+            VEL_Voltage_Open_Loop();
              //¹Û²âµçÁ÷
 //             clark_transf();
 //             park_transf();

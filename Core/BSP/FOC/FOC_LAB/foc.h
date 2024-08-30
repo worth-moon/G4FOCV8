@@ -21,4 +21,5 @@ void Velocity_Closed_Loop(void);
 void Position_Closed_Loop(void);
 
 void POS_Voltage_Open_Loop(void);
+void VEL_Voltage_Open_Loop(void);
 #endif 
