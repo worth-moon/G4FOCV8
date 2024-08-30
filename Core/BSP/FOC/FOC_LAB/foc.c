@@ -17,7 +17,7 @@ volatile float vel_cnt, vel_angle_0, vel_angle_1,vel,last_vel,low_alpha,vel_ref,
 volatile float omega_vel, vel_delta_t = 0.0002f, xian_vel,xian_vel_filt,last_xian_vel,last_xian_vel_filt;
 volatile float pos_cnt, pos_angle, last_pos_angle, pos_angle_360, pos_ref ,circle_count ,all_angle;
 
-volatile float pos_vel_tar = 3.00f,pos_vel_p = 50.0f;
+volatile float pos_vel_tar = 3.00f,pos_vel_p = 30.0;
 void FOC_Init(void)
 {
 
@@ -174,8 +174,8 @@ void POS_Voltage_Open_Loop(void)
 void Current_Closed_Loop(void)
 {
     //角度相关
-    spi_pulse = MT6816_Get_AngleData();
-    mag_hudu = (float)((spi_pulse + 206) * MATH_2PI / 16384.0f);
+    spi_pulse = AS5047_read(ANGLECOM2);
+    mag_hudu = (float)((spi_pulse + 138) * MATH_2PI / 16384.0f);
     elec_hudu = fmodf(mag_hudu * NUM_OF_POLE_PAIRS, MATH_2PI);
     if (elec_hudu < 0)
         elec_hudu = elec_hudu + MATH_2PI;
@@ -187,7 +187,7 @@ void Current_Closed_Loop(void)
     clark_transf();
     park_transf();
 
-    Iq_ref = -1.0f;
+    Iq_ref = 0.5f;
     Vd = -Pid_Cal(&GI_D, Id_ref, Id);
     Vq = Pid_Cal(&GI_Q, Iq_ref, Iq);
     //坐标变换
