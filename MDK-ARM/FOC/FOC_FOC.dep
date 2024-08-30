@@ -1,8 +1,8 @@
 Dependencies for Project 'FOC', Target 'FOC': (DO NOT MODIFY !)
 CompilerVersion: 6220000::V6.22::ARMCLANG
 F (startup_stm32g474xx.s)(0x66C22F58)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 540" -Wa,armasm,--pd,"STM32G474xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o foc/startup_stm32g474xx.o)
-F (../Core/Src/main.c)(0x66C6BACE)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/main.o -MMD)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+F (../Core/Src/main.c)(0x66D15FF4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/main.o -MMD)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -43,7 +43,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -57,7 +57,7 @@ I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (../Core/Src/gpio.c)(0x66C22F4F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/gpio.o -MMD)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -97,7 +97,7 @@ I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h)(0x65E85DAD)
 I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -111,7 +111,7 @@ I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (../Core/Src/adc.c)(0x66C1B535)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/adc.o -MMD)
 I (..\Core\Inc\adc.h)(0x66C08527)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -151,7 +151,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -165,7 +165,7 @@ I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (../Core/Src/spi.c)(0x66C1C32C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/spi.o -MMD)
 I (..\Core\Inc\spi.h)(0x66C1C32C)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -205,7 +205,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -219,7 +219,7 @@ I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (../Core/Src/tim.c)(0x66C1A850)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/tim.o -MMD)
 I (..\Core\Inc\tim.h)(0x66BF63BB)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -259,7 +259,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -272,7 +272,7 @@ I (..\Core\BSP\FOC\PID\position_pid.h)(0x66C35C82)
 I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (../Core/Src/stm32g4xx_it.c)(0x66C22F53)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/stm32g4xx_it.o -MMD)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -313,7 +313,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -327,7 +327,7 @@ I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 I (..\Core\Inc\stm32g4xx_it.h)(0x66C22F54)
 F (../Core/Src/stm32g4xx_hal_msp.c)(0x66BEC759)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/stm32g4xx_hal_msp.o -MMD)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -368,7 +368,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1119,7 +1119,7 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim.h)(0x65E85DC9)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h)(0x65E85DC9)
 F (..\Core\BSP\KEY_BSP\Ringbuff\ringbuff.c)(0x664B589B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/ringbuff.o -MMD)
 I (..\Core\BSP\KEY_BSP\Ringbuff\ringbuff.h)(0x664B5880)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1160,7 +1160,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1177,7 +1177,7 @@ F (..\Core\BSP\KEY_BSP\KEY\key.c)(0x664B52F0)(-xc -std=c99 --target=arm-arm-none
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\Ringbuff\ringbuff.h)(0x664B5880)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1216,7 +1216,7 @@ I (..\USB_Device\App\usb_device.h)(0x66BF04D1)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h)(0x65E85DAD)
 I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1232,7 +1232,7 @@ F (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)()
 F (..\Core\BSP\KEY_BSP\KEY\key_app.c)(0x66BF0E06)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/key_app.o -MMD)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1271,7 +1271,7 @@ I (..\USB_Device\App\usb_device.h)(0x66BF04D1)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h)(0x65E85DAD)
 I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1589,9 +1589,9 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim.h)(0x65E85DC9)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h)(0x65E85DC9)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x65E85DAD)
-F (..\Core\BSP\UART_USB\debug_printf.c)(0x66728CC9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/debug_printf.o -MMD)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+F (..\Core\BSP\UART_USB\debug_printf.c)(0x66D15DF0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/debug_printf.o -MMD)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1643,10 +1643,10 @@ I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85D
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h)(0x65E85DAD)
-F (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)()
+F (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)()
 F (..\Core\BSP\UART_USB\vofa.c)(0x66C60900)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/vofa.o -MMD)
 I (..\Core\BSP\UART_USB\vofa.h)(0x66BF0608)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1687,7 +1687,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1699,9 +1699,9 @@ I (..\Core\BSP\FOC\PID\position_pid.h)(0x66C35C82)
 I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (..\Core\BSP\UART_USB\vofa.h)(0x66BF0608)()
-F (..\Core\BSP\FOC\Coordinate_transformation\trans.c)(0x66C42C0C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/trans.o -MMD)
+F (..\Core\BSP\FOC\Coordinate_transformation\trans.c)(0x66D15DF0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/trans.o -MMD)
 I (..\Core\BSP\FOC\Coordinate_transformation\trans.h)(0x66C19E25)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1742,7 +1742,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1757,7 +1757,7 @@ F (..\Core\BSP\FOC\Coordinate_transformation\trans.h)(0x66C19E25)()
 F (..\Core\BSP\FOC\MT6816\mt6816.c)(0x6649A832)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/mt6816.o -MMD)
 I (..\Core\BSP\FOC\MT6816\mt6816.h)(0x6617BE38)
 I (..\Core\Inc\spi.h)(0x66C1C32C)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1797,7 +1797,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1809,9 +1809,9 @@ I (..\Core\BSP\FOC\PID\position_pid.h)(0x66C35C82)
 I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (..\Core\BSP\FOC\MT6816\mt6816.h)(0x6617BE38)()
-F (..\Core\BSP\FOC\FOC_LAB\foc.c)(0x66C6BA13)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/foc.o -MMD)
+F (..\Core\BSP\FOC\FOC_LAB\foc.c)(0x66D15FA1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/foc.o -MMD)
 I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1852,7 +1852,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1864,8 +1864,8 @@ I (..\Core\BSP\FOC\MT6816\mt6816.h)(0x6617BE38)
 I (..\Core\BSP\FOC\PID\position_pid.h)(0x66C35C82)
 I (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)
 F (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)()
-F (..\Core\BSP\FOC\PID\pid.c)(0x66C6BAB0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/pid.o -MMD)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+F (..\Core\BSP\FOC\PID\pid.c)(0x66C737C6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/pid.o -MMD)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1906,7 +1906,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)
@@ -1921,7 +1921,7 @@ I (..\Core\BSP\FOC\FOC_LAB\foc.h)(0x66C60900)
 F (..\Core\BSP\FOC\PID\pid.h)(0x65CC6978)()
 F (..\Core\BSP\FOC\PID\position_pid.c)(0x66C426DF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../Core/BSP/KEY_BSP/KEY -I ../Core/BSP/KEY_BSP/Ringbuff -I ../USB_Device/App -I ../USB_Device/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Core/BSP/UART_USB -I ../Core/BSP/FOC/Coordinate_transformation -I ../Core/BSP/FOC/MT6816 -I ../Core/BSP/FOC/FOC_LAB -I ../Core/BSP/FOC/PID-I./RTE/_FOC-IC:/Users/86156/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/86156/AppData/Local/Arm/Packs/Keil/STM32G4xx_DFP/1.5.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="540" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o foc/position_pid.o -MMD)
 I (..\Core\BSP\FOC\PID\position_pid.h)(0x66C35C82)
-I (..\Core\Inc\main.h)(0x66C6BAB0)
+I (..\Core\Inc\main.h)(0x66D15DF0)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x65E85DC9)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x66C22F54)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h)(0x65E85DC9)
@@ -1962,7 +1962,7 @@ I (..\USB_Device\Target\usbd_conf.h)(0x66BF04D1)
 I (..\Core\Inc\gpio.h)(0x66BEC759)
 I (..\Core\BSP\KEY_BSP\KEY\key_app.h)(0x66BED542)
 I (..\Core\BSP\KEY_BSP\KEY\key.h)(0x5F1FE4DE)
-I (..\Core\BSP\UART_USB\debug_printf.h)(0x66C22F83)
+I (..\Core\BSP\UART_USB\debug_printf.h)(0x66D15DF0)
 I (..\USB_Device\App\usbd_cdc_if.h)(0x66BF04D2)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h)(0x65E85DAD)
 I (..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h)(0x65E85DAD)

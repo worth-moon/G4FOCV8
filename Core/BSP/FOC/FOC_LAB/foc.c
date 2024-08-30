@@ -26,7 +26,7 @@ void FOC_Init(void)
 void VF_RUN(void)
 {
     //角度相关
-    self_angle += 1;
+    self_angle += 0.5;
     if (self_angle > 360)
         self_angle = 0;
 
@@ -34,7 +34,7 @@ void VF_RUN(void)
     tran_angle(theta_angle);                //角度转弧度
     sin_cos_val();                          //三角变换
     //坐标变换
-    Vq = 0.5f;
+    Vq = 5.0f;
     Vd = 0.0f;
     anti_park_transf();                     //旋转转静止坐标轴
     svpwm_calc();                           //SVPWM转三相

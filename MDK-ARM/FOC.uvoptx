@@ -245,6 +245,21 @@
           <WinNumber>1</WinNumber>
           <ItemText>pos_angle_360</ItemText>
         </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>adc1_current</ItemText>
+        </Ww>
+        <Ww>
+          <count>19</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>adc2_current</ItemText>
+        </Ww>
+        <Ww>
+          <count>20</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>adc3_current</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
