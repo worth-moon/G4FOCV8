@@ -1,6 +1,5 @@
-foc/key_app.o: ..\Core\BSP\KEY_BSP\KEY\key_app.c \
-  ..\Core\BSP\KEY_BSP\KEY\key.h ..\Core\BSP\KEY_BSP\KEY\key_app.h \
-  ..\Core\Inc\main.h ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
+foc/as5047p.o: ..\Core\BSP\FOC\AS5047\as5047p.c ..\Core\Inc\main.h \
+  ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
   ..\Core\Inc\stm32g4xx_hal_conf.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_def.h \
@@ -35,6 +34,7 @@ foc/key_app.o: ..\Core\BSP\KEY_BSP\KEY\key_app.c \
   ..\USB_Device\App\usb_device.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h \
   ..\USB_Device\Target\usbd_conf.h ..\Core\Inc\gpio.h \
+  ..\Core\BSP\KEY_BSP\KEY\key_app.h ..\Core\BSP\KEY_BSP\KEY\key.h \
   ..\Core\BSP\UART_USB\debug_printf.h ..\USB_Device\App\usbd_cdc_if.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc\usbd_cdc.h \
   ..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h \

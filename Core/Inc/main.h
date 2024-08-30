@@ -52,6 +52,8 @@ extern "C" {
 #include "position_pid.h"
 #include "pid.h"
 #include "foc.h"
+
+#include "as5047p.h"
 /* USER CODE END Includes */
 
 /* Exported types -----1------------------------------------------------------*/

@@ -44,4 +44,4 @@ foc/stm32g4xx_it.o: ..\Core\Src\stm32g4xx_it.c ..\Core\Inc\main.h \
   ..\Core\BSP\FOC\Coordinate_transformation\trans.h \
   ..\Core\BSP\FOC\MT6816\mt6816.h ..\Core\BSP\FOC\PID\position_pid.h \
   ..\Core\BSP\FOC\PID\pid.h ..\Core\BSP\FOC\FOC_LAB\foc.h \
-  ..\Core\Inc\stm32g4xx_it.h
+  ..\Core\BSP\FOC\AS5047\as5047p.h ..\Core\Inc\stm32g4xx_it.h

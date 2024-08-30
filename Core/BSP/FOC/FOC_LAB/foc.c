@@ -4,7 +4,8 @@
 #define MATH_PI 3.14159265358979323846f
 #define MATH_2PI 6.28318530717958647693f
 #define NUM_OF_POLE_PAIRS 7.0f
-
+#define ANGLECOM 0x3FFF
+#define ANGLECOM2 0x3FFE
 //#define GI_D_KP (0.140358f)//1.0f Drag_IF_Mode
 //#define GI_D_KI (706.3372224f)//24.0f  Drag_IF_Mode
 
@@ -21,6 +22,7 @@ void FOC_Init(void)
 
 }
 
+//motor.mag_angle = (float)(AS5047_read(ANGLECOM) * MATH_2PI / 16384.0f);
 
 //VF模式
 void VF_RUN(void)
@@ -90,7 +92,7 @@ void IF_RUN(void)
 
 void Calibration_Zero(void)
 {
-    spi_pulse = MT6816_Get_AngleData();
+    spi_pulse = AS5047_read(ANGLECOM2);
     //角度相关
     self_angle += 1;
     if (self_angle > 360)
@@ -101,7 +103,7 @@ void Calibration_Zero(void)
     sin_cos_val();                          //三角变换
     //坐标变换
     Vq = 0.0f;
-    Vd = 0.5f;
+    Vd = 2.0f;
     anti_park_transf();                     //旋转转静止坐标轴
     svpwm_calc();                           //SVPWM转三相
 
@@ -111,10 +113,9 @@ void Calibration_Zero(void)
 }
 void Voltage_Open_Loop(void)
 {
-
     //角度相关
-    spi_pulse = MT6816_Get_AngleData();
-    mag_hudu = (float)((spi_pulse + 206) * MATH_2PI / 16384.0f);
+    spi_pulse = AS5047_read(ANGLECOM2);
+    mag_hudu = (float)((spi_pulse + 138) * MATH_2PI / 16384.0f);
     elec_hudu = fmodf(mag_hudu * NUM_OF_POLE_PAIRS, MATH_2PI);
     //elec_hudu >= 0 ? elec_hudu : (elec_hudu + MATH_2PI);
     if(elec_hudu < 0)
@@ -124,7 +125,7 @@ void Voltage_Open_Loop(void)
     //tran_angle(theta_angle);                //角度转弧度
     sin_cos_val();                          //三角变换
     //坐标变换
-    Vq = 0.5f;
+    Vq = 3.0f;
     Vd = 0.0f;
     anti_park_transf();                     //旋转转静止坐标轴
     svpwm_calc();                           //SVPWM转三相

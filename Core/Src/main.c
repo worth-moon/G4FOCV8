@@ -155,7 +155,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim3);
 	
-	
   Key_Init();
   Add_Key_demo();
 	
@@ -317,7 +316,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)
         if (foc_start_flag)
         {
 						//HAL_GPIO_WritePin(CH2_GPIO_Port, CH2_Pin, GPIO_PIN_SET);
-             VF_RUN();
+            Voltage_Open_Loop();
              //¹Û²âµçÁ÷
              clark_transf();
              park_transf();

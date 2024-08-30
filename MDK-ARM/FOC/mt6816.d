@@ -43,4 +43,4 @@ foc/mt6816.o: ..\Core\BSP\FOC\MT6816\mt6816.c \
   ..\Core\BSP\UART_USB\vofa.h \
   ..\Core\BSP\FOC\Coordinate_transformation\trans.h \
   ..\Core\BSP\FOC\PID\position_pid.h ..\Core\BSP\FOC\PID\pid.h \
-  ..\Core\BSP\FOC\FOC_LAB\foc.h
+  ..\Core\BSP\FOC\FOC_LAB\foc.h ..\Core\BSP\FOC\AS5047\as5047p.h

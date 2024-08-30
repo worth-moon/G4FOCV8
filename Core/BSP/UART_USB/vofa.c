@@ -75,9 +75,13 @@ void vofa_demo(void)
 	ch1 = (float)TIM1->CCR1;
 	ch2 = (float)TIM1->CCR2;
 	ch3 = (float)TIM1->CCR3;
- 	vofa_send_data(0, GVEL.i);
+// 	vofa_send_data(0, spi_pulse);
+//	vofa_send_data(1, pos_angle_360);
+//	vofa_send_data(2, pos_ref);
+	vofa_send_data(0, ch1);
 	vofa_send_data(1, pos_angle_360);
 	vofa_send_data(2, pos_ref);
+	
 	// Call the function to store the data in the buffer
 	vofa_send_data(3, Ia);
 	vofa_send_data(4, Ib);
