@@ -270,32 +270,27 @@
         <Ww>
           <count>1</count>
           <WinNumber>2</WinNumber>
-          <ItemText>elec_angle</ItemText>
+          <ItemText>self_angle</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>2</WinNumber>
-          <ItemText>mag_angle</ItemText>
+          <ItemText>Vq</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>2</WinNumber>
-          <ItemText>mt6816_angle</ItemText>
+          <ItemText>GVEL</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>2</WinNumber>
-          <ItemText>self_angle</ItemText>
+          <ItemText>pos_vel_tar</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>2</WinNumber>
-          <ItemText>Vq</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>GVEL</ItemText>
+          <ItemText>mag_hudu</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>

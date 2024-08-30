@@ -78,7 +78,7 @@ void vofa_demo(void)
 // 	vofa_send_data(0, spi_pulse);
 //	vofa_send_data(1, pos_angle_360);
 //	vofa_send_data(2, pos_ref);
-	vofa_send_data(0, ch1);
+	vofa_send_data(0, mag_hudu);
 	vofa_send_data(1, pos_angle_360);
 	vofa_send_data(2, pos_ref);
 	

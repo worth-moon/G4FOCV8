@@ -17,6 +17,7 @@ volatile float vel_cnt, vel_angle_0, vel_angle_1,vel,last_vel,low_alpha,vel_ref,
 volatile float omega_vel, vel_delta_t = 0.0002f, xian_vel,xian_vel_filt,last_xian_vel,last_xian_vel_filt;
 volatile float pos_cnt, pos_angle, last_pos_angle, pos_angle_360, pos_ref ,circle_count ,all_angle;
 
+volatile float pos_vel_tar = 3.00f,pos_vel_p = 50.0f;
 void FOC_Init(void)
 {
 
@@ -127,6 +128,37 @@ void Voltage_Open_Loop(void)
     //坐标变换
     Vq = 3.0f;
     Vd = 0.0f;
+    anti_park_transf();                     //旋转转静止坐标轴
+    svpwm_calc();                           //SVPWM转三相
+
+    TIM1->CCR1 = (uint16_t)(Tcmp1);
+    TIM1->CCR2 = (uint16_t)(Tcmp2);
+    TIM1->CCR3 = (uint16_t)(Tcmp3);
+
+    //电流采样
+    clark_transf();
+    park_transf();
+}
+
+void POS_Voltage_Open_Loop(void)
+{
+    //角度相关
+    spi_pulse = AS5047_read(ANGLECOM2);
+    mag_hudu = (float)((spi_pulse + 138) * MATH_2PI / 16384.0f);
+    elec_hudu = fmodf(mag_hudu * NUM_OF_POLE_PAIRS, MATH_2PI);
+    //elec_hudu >= 0 ? elec_hudu : (elec_hudu + MATH_2PI);
+    if (elec_hudu < 0)
+        elec_hudu = elec_hudu + MATH_2PI;
+
+    theta_hudu = elec_hudu;
+    //tran_angle(theta_angle);                //角度转弧度
+    sin_cos_val();                          //三角变换
+    //坐标变换
+    Vq = pos_vel_p * (pos_vel_tar - mag_hudu);
+		 //Vq = 1.0f;
+    Vd = 0.0f;
+    if(Vq > 5)
+        Vq = 5;
     anti_park_transf();                     //旋转转静止坐标轴
     svpwm_calc();                           //SVPWM转三相
 
